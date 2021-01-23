@@ -1,10 +1,13 @@
 // fonts
-@import "https://fonts.googleapis.com/css2?family=Open+Sans&family=Ribeye+Marrow&family=Sofia&display=swap";
+// @import "https://fonts.googleapis.com/css2?family=Open+Sans&family=Ribeye+Marrow&family=Sofia&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Fredoka+One&family=Raleway&display=swap";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css";
 
-$header-font: "Ribeye Marrow", cursive;
-$small-header: "Sofia", cursive;
-$body-font: "Open Sans", sans-serif;
+$header-font: "Fredoka One", cursive;
+// "Ribeye Marrow", cursive;
+$small-header: "Fredoka One", cursive;
+// "Sofia", cursive;
+$body-font: "Raleway", sans-serif;
 
 // colors
 $teal: #35e2c3;

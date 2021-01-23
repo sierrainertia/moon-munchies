@@ -1,9 +1,10 @@
 .aboutUs {
   display: flex;
+  margin: 50px 0;
 
   img {
     width: 400px;
-    margin: 20px;
+    margin: 20px 20px 20px 0;
   }
   .info {
     display: flex;
@@ -22,5 +23,20 @@
       flex-direction: column;
       justify-content: center;
     }
+  }
+}
+
+.products {
+  margin-top: 70px;
+  h2 {
+    color: $purple;
+  }
+
+  p {
+    margin-top: 15px;
+  }
+
+  .gallery {
+    margin-top: 10px;
   }
 }

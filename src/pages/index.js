@@ -3,6 +3,8 @@ import mrMunchie from "../images/logo.png";
 import "../styles/index.scss";
 import { Helmet } from "react-helmet";
 
+import { Tabs } from "../components/Tabs";
+
 // markup
 const IndexPage = () => {
   return (
@@ -83,9 +85,12 @@ const IndexPage = () => {
               </p>
             </div>
           </div>
+        </div>
 
-          <div className="products">
+        <div className="products">
+          <div className="wrapper">
             <h2>Products</h2>
+            <Tabs />
             <div className="gallery">
               <img src="https://placekitten.com/300/300" alt="" />
               <img src="https://placekitten.com/300/300" alt="" />

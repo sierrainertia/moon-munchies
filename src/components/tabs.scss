@@ -1,0 +1,35 @@
+@import "../styles/variables.scss";
+@import "../styles/general.scss";
+
+.productBar ul {
+  display: flex;
+  justify-content: flex-start;
+  //   padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  li {
+    font-size: 18px;
+    margin-right: 40px;
+
+    &:first-child {
+      margin-left: -5px;
+    }
+
+    button {
+      border: none;
+      background: none;
+      color: black;
+      border-radius: 30px;
+      background-color: transparent;
+      padding: 10px;
+
+      &:hover {
+        color: white;
+        background-color: $purple;
+        padding: 10px;
+        border-radius: 30px;
+      }
+    }
+  }
+}
