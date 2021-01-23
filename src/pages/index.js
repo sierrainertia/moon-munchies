@@ -1,29 +1,37 @@
 import * as React from "react";
 import mrMunchie from "../images/logo.png";
 import "../styles/index.scss";
+import { Helmet } from "react-helmet";
 
 // markup
 const IndexPage = () => {
   return (
     <>
+      <Helmet>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+          integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
+          crossOrigin="anonymous"
+        ></script>
+      </Helmet>
+
       <title>Moon Munchies</title>
       <header>
         <div className="wrapper">
           <div className="navBar">
-            <img src={mrMunchie} alt="Moon munchies logo" />
             <nav>
               <ul>
                 <li>
-                  <a href=""></a>Home
+                  <a href="">Home</a>
                 </li>
                 <li>
-                  <a href=""></a>About us
+                  <a href="">About us</a>
                 </li>
                 <li>
-                  <a href=""></a>Products
+                  <a href="">Products</a>
                 </li>
                 <li>
-                  <a href=""></a>Order now
+                  <a href="">Order now</a>
                 </li>
               </ul>
             </nav>
@@ -32,6 +40,25 @@ const IndexPage = () => {
             <h1>Moon Munchies</h1>
             <h2>Freeze-dried Treats</h2>
             <button>Order now</button>
+            <div className="socialLinks">
+              <ul>
+                <li>
+                  <a href="">
+                    <i className="fab fa-facebook"></i>
+                  </a>
+                </li>
+                {/* <li>
+                  <a href="">
+                    <i className="fab fa-instagram-square"></i>
+                  </a>
+                </li> */}
+                <li>
+                  <a href="">
+                    <i className="far fa-envelope"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </header>
@@ -39,13 +66,22 @@ const IndexPage = () => {
       <main>
         <div className="wrapper">
           <div className="aboutUs">
-            <h2>About us</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-              odit recusandae assumenda? Suscipit ipsam et saepe facilis neque
-              iure numquam ab ducimus impedit reiciendis? Eius asperiores culpa
-              temporibus nesciunt blanditiis!
-            </p>
+            <img src={mrMunchie} alt="Moon munchies logo" />
+            <div className="info">
+              <h2>About us</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nesciunt odit recusandae assumenda? Suscipit ipsam et saepe
+                facilis neque iure numquam ab ducimus impedit reiciendis? Eius
+                asperiores culpa temporibus nesciunt blanditiis!
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Nesciunt odit recusandae assumenda? Suscipit ipsam et saepe
+                facilis neque iure numquam ab ducimus impedit reiciendis? Eius
+                asperiores culpa temporibus nesciunt blanditiis!
+              </p>
+            </div>
           </div>
 
           <div className="products">
@@ -126,7 +162,7 @@ const IndexPage = () => {
         </div>
       </main>
       <footer>
-        <p>Moon Munchies &copy 2019</p>
+        <p>Moon Munchies &copy; 2019</p>
         <p>
           Website created by
           <a href="https://sierracodes.online"> Sierra MacDonald</a>
