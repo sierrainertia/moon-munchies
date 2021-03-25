@@ -32,16 +32,23 @@ const IndexPage = () => {
             <div className="info">
               <h2>About us</h2>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nesciunt odit recusandae assumenda? Suscipit ipsam et saepe
-                facilis neque iure numquam ab ducimus impedit reiciendis? Eius
-                asperiores culpa temporibus nesciunt blanditiis!
+                We’re a family run business with a mission to create powerful
+                and unique candy experiences. By freeze-drying candy classics,
+                you not only intensify the flavour but provide a whole new way
+                to eat your treats.
+              </p>
+              <p>Does your favourite confectionary send you to the dentist? </p>
+              <p>
+                Do grandma and grandpa&apos;s dentures get pulled out every time
+                they take a bite of their delectable desserts?
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nesciunt odit recusandae assumenda? Suscipit ipsam et saepe
-                facilis neque iure numquam ab ducimus impedit reiciendis? Eius
-                asperiores culpa temporibus nesciunt blanditiis!
+                Worry no more! Freeze-dried treats melt in your mouth, so you
+                can now enjoy all your sticky snacks with no fear!
+              </p>
+              <p>
+                Ready to enjoy flavour that is out of this world? Place an order
+                today!
               </p>
             </div>
           </div>
