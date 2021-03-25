@@ -1,0 +1,56 @@
+.contact-section {
+  /* TODO: Move this to each section */
+  padding: 80px 0;
+
+  h2 {
+    font-family: "Raleway";
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    margin: 20px;
+    text-align: center;
+  }
+
+  &__email-form {
+    width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+    align-items: flex-end;
+
+    input,
+    textarea {
+      border: 1px solid #808080;
+      border-radius: 20px;
+      box-shadow: inset 0px 3px 10px rgba(0, 0, 0, 0.25);
+      padding: 15px 22px;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+        border: 3px solid black;
+        padding: 13px 20px;
+        box-shadow: none;
+      }
+    }
+
+    textarea {
+      font-family: "Raleway";
+      height: 200px;
+      resize: none;
+    }
+
+    button {
+      background: #7f73ff;
+      border-radius: 30px;
+      color: white;
+      border: none;
+      padding: 20px 40px;
+      display: inline-block;
+    }
+  }
+}

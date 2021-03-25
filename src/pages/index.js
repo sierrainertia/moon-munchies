@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { Header } from "../components/header";
 import { ProductTabs } from "../components/product-tabs";
+import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
 import "../styles/index.scss";
 
@@ -135,6 +136,7 @@ const IndexPage = () => {
           </div>
         </div>
       </main>
+      <ContactSection />
       <Footer />
     </>
   );
