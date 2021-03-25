@@ -1,0 +1,31 @@
+@import "../../styles/variables.scss";
+
+.footer {
+  background-color: $yellow;
+  padding: 20px;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__links {
+    display: flex;
+    grid-gap: 50px;
+
+    header {
+      padding-bottom: 10px;
+      font-weight: 700;
+    }
+  }
+
+  &__social-links {
+    display: flex;
+    grid-gap: 10px;
+  }
+}

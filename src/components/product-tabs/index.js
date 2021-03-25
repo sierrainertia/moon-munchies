@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./tabs.scss";
 
-export class Tabs extends Component {
+export class ProductTabs extends Component {
   render() {
     return (
       <>
