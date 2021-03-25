@@ -36,6 +36,13 @@
         padding: 13px 20px;
         box-shadow: none;
       }
+
+      &:invalid:not(:focus):not(:placeholder-shown) {
+        outline: none;
+        border: 3px solid red;
+        padding: 13px 20px;
+        box-shadow: none;
+      }
     }
 
     textarea {
@@ -49,8 +56,16 @@
       border-radius: 30px;
       color: white;
       border: none;
+      font-size: 18px;
+      font-family: "Raleway";
       padding: 20px 40px;
       display: inline-block;
+      border: 3px solid transparent;
+
+      &:focus {
+        outline: none;
+        border: 3px solid black;
+      }
     }
   }
 }
