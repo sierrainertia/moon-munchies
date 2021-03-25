@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Header } from "../components/header";
+import { Hero } from "../components/hero";
 import { ProductTabs } from "../components/product-tabs";
 import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
@@ -20,12 +21,8 @@ const IndexPage = () => {
 
       <title>Moon Munchies</title>
       <Header />
-      <div className="hero">
-        <div className="wrapper">
-          <h1>Freeze-dried Treats</h1>
-          <button>Order now</button>
-        </div>
-      </div>
+
+      <Hero />
 
       <main>
         <div className="wrapper">
