@@ -41,7 +41,7 @@ export const Header = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <i className="fab fa-instagram-square"></i>
+                <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>

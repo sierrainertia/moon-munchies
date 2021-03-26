@@ -1,17 +1,26 @@
 @import "../../styles/variables.scss";
 
 .hero {
-  height: 100vh;
+  height: calc(100vh - 70px);
   background-color: $pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .wrapper {
+    text-align: right;
+  }
 
   h1 {
     font-family: $body-font;
     font-size: 48px;
     font-weight: 700;
+    padding-bottom: 15px;
   }
 
   p {
     font-size: 20px;
+    padding-bottom: 45px;
   }
 
   button {
@@ -22,5 +31,7 @@
 
     color: white;
     border: none;
+    font-size: 18px;
+    font-weight: 700;
   }
 }
