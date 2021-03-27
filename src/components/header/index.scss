@@ -1,4 +1,5 @@
 @import "../../styles/breakpoints.scss";
+@import "../../styles/variables.scss";
 
 .nav-bar {
   display: flex;
@@ -77,6 +78,10 @@
       // justify-content: space-between;
       font-size: 20px;
       color: black;
+
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
 
@@ -87,6 +92,14 @@
 
     a {
       font-size: 20px;
+
+      &:hover {
+        color: $purple;
+      }
+
+      svg:hover {
+        transform: scale(1.3);
+      }
     }
   }
 
