@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import mrMunchie from "../../images/logo.png";
 import "./index.scss";
 
 export const Header = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = useCallback(() => setMenuOpen(!isMenuOpen), [isMenuOpen]);
+
   return (
-    <header className="nav-bar">
+    <header className={`nav-bar ${isMenuOpen ? "nav-bar--open" : ""}`}>
       <div className="wrapper">
         <img
           src={mrMunchie}
@@ -51,6 +55,7 @@ export const Header = () => {
             </li>
           </ul>
         </div>
+        <button onClick={toggleMenu}>{isMenuOpen ? "close" : "open"}</button>
       </div>
     </header>
   );
