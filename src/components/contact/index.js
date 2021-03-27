@@ -7,7 +7,11 @@ export const ContactSection = () => {
       <div className="wrapper">
         <h2>Contact</h2>
         <p>Fill out the form below to chat with us!</p>
-        <form name="contact" className="contact-section__email-form" netlify>
+        <form
+          name="contact"
+          className="contact-section__email-form"
+          data-netlify="true"
+        >
           <input
             type="email"
             name="email"
