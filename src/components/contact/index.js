@@ -12,6 +12,8 @@ export const ContactSection = () => {
           className="contact-section__email-form"
           data-netlify="true"
         >
+          <input type="hidden" name="form-name" value="contact" />
+
           <input
             type="email"
             name="email"
