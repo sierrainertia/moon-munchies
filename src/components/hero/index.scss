@@ -3,12 +3,21 @@
 .hero {
   height: calc(100vh - 70px);
   background-color: $pink;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   .wrapper {
-    text-align: right;
+    display: flex;
+    height: 100%;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__text,
+  &__image {
+    flex: 1;
   }
 
   h1 {
