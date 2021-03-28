@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import mrMunchie from "../../images/logo.png";
 import "./index.scss";
 
@@ -6,6 +6,42 @@ export const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = useCallback(() => setMenuOpen(!isMenuOpen), [isMenuOpen]);
+
+  // As soon as the component loads, but never again, add some listeners
+  useEffect(() => {
+    const linksInMenu = document.querySelectorAll(".nav-bar a");
+
+    linksInMenu.forEach((menuLink) => {
+      menuLink.addEventListener("click", (e) => {
+        const anchor = menuLink.getAttribute("href");
+        if (anchor.startsWith("#")) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Smoothly scroll to the link
+          try {
+            const anchorLocation = document.querySelector(anchor);
+            window.scroll({
+              top: anchorLocation.offsetTop,
+              behavior: "smooth",
+            });
+          } catch (_) {
+            // noop
+          }
+        }
+        setMenuOpen(false);
+      });
+    });
+  }, []);
+
+  // Do something whenever the menu's openness changes
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen]);
 
   return (
     <header className={`nav-bar ${isMenuOpen ? "nav-bar--open" : ""}`}>
@@ -55,7 +91,17 @@ export const Header = () => {
             </li>
           </ul>
         </div>
-        <button onClick={toggleMenu}>{isMenuOpen ? "close" : "open"}</button>
+        <button
+          className={`hamburger hamburger--collapse ${
+            isMenuOpen ? "is-active" : ""
+          }`}
+          type="button"
+          onClick={toggleMenu}
+        >
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+        </button>
       </div>
     </header>
   );

@@ -26,7 +26,7 @@ const IndexPage = () => {
 
       <main>
         <div className="wrapper">
-          <div className="aboutUs">
+          <div className="aboutUs" id="about">
             <div className="info">
               <h2>About us</h2>
               <p>
@@ -52,7 +52,7 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <div className="products">
+        <div className="products" id="products">
           <div className="wrapper">
             <h2>Products</h2>
             <ProductTabs />

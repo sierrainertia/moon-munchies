@@ -3,7 +3,7 @@ import "./index.scss";
 
 export const Hero = () => {
   return (
-    <div className="hero">
+    <div className="hero" id="home">
       <div className="wrapper">
         <div className="hero__image"></div>
         <div className="hero__text">
