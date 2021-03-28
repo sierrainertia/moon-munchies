@@ -1,1 +1,30 @@
-{"name":"moon-munchies","version":"1.0.0","private":true,"description":"moon-munchies","author":"Sierra MacDonald","keywords":["gatsby"],"scripts":{"develop":"gatsby develop","start":"gatsby develop","build":"gatsby build","serve":"gatsby serve","clean":"gatsby clean"},"dependencies":{"eslint":"^6.8.0","eslint-plugin-react":"^7.22.0","eslint-plugin-react-hooks":"^1.7.0","gatsby":"^2.26.1","gatsby-plugin-sass":"^3.0.0","prettier":"^2.2.1","react":"^16.13.1","react-dom":"^16.13.1","react-helmet":"^6.1.0","sass":"^1.32.4"}}
+{
+  "name": "moon-munchies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "moon-munchies",
+  "author": "Sierra MacDonald",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "gatsby": "^2.26.1",
+    "gatsby-plugin-sass": "^3.0.0",
+    "gatsby-source-stripe": "^3.2.2",
+    "prettier": "^2.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.32.4"
+  }
+}

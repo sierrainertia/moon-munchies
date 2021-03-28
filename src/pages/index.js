@@ -7,7 +7,6 @@ import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
 import "../styles/index.scss";
 
-// markup
 const IndexPage = () => {
   return (
     <>
@@ -57,13 +56,6 @@ const IndexPage = () => {
             <h2>Products</h2>
             <ProductTabs />
             <div className="gallery">
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
               <img src="https://placekitten.com/300/300" alt="" />
               <img src="https://placekitten.com/300/300" alt="" />
             </div>
