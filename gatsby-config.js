@@ -18,7 +18,7 @@ module.exports = {
           "Subscription",
         ],
         secretKey:
-          "sk_test_51Ia4mxDV5lZ6A1jl6qIc5XAQpWfLd3BEiek8sjJ5EAkYUal7YJ9jw4yDUnga2GqDvee1pFonOQPbK4dkZzXHOE9b00fq3xaKfT",
+          "sk_test_51Ia4qDGncOwLsgTJKcaTgIKClUQBNsOXPc5TiaUPOV0RqW9BwfDanU1GjyYXewQST5E8fluHpZfD8HLItNfIqMsk00kxaECvUw",
         downloadFiles: true,
       },
     },
