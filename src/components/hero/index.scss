@@ -1,23 +1,60 @@
 @import "../../styles/variables.scss";
+@import "../../styles/breakpoints.scss";
 
 .hero {
-  height: 100vh;
-  background-color: $pink;
+  height: 90vh;
+  padding-top: 70px;
+  background: linear-gradient(
+    90deg,
+    #90ede0 0%,
+    #d5d8ff 33%,
+    #ffc7d7 66%,
+    #fff296 100%
+  );
+
+  @include tablet {
+    background: linear-gradient(
+      180deg,
+      #90ede0 0%,
+      #d5d8ff 33%,
+      #ffc7d7 66%,
+      #fff296 100%
+    );
+
+    height: min-content;
+  }
 
   .wrapper {
     display: flex;
     height: 100%;
+
+    @include tablet {
+      flex-direction: column;
+    }
+  }
+
+  &__image {
+    flex: 3;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
   }
 
   &__text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  }
+    margin-left: 25px;
+    flex: 2;
 
-  &__text,
-  &__image {
-    flex: 1;
+    @include tablet {
+      margin-left: 0;
+      padding: 30px;
+    }
   }
 
   h1 {
@@ -35,12 +72,16 @@
   button {
     width: 180px;
     height: 60px;
-    background: $purple;
+    background: $black;
     border-radius: 30px;
 
     color: white;
     border: none;
     font-size: 18px;
     font-weight: 700;
+
+    @include tablet {
+      width: 100%;
+    }
   }
 }
