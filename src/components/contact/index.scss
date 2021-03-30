@@ -1,3 +1,5 @@
+@import "../../styles/breakpoints.scss";
+
 .contact-section {
   /* TODO: Move this to each section */
   padding: 80px 0;
@@ -15,12 +17,17 @@
   }
 
   &__email-form {
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     grid-gap: 20px;
     align-items: flex-end;
+
+    @include desktop {
+      align-items: center;
+      width: 80%;
+    }
 
     input,
     textarea {
@@ -65,6 +72,14 @@
       &:focus {
         outline: none;
         border: 3px solid black;
+      }
+
+      @include desktop {
+        align-self: flex-end;
+      }
+
+      @include mobile {
+        width: 100%;
       }
     }
   }
