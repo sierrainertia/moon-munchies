@@ -3,11 +3,14 @@ import { Helmet } from "react-helmet";
 import { Header } from "../components/header";
 import { Hero } from "../components/hero";
 import { ProductTabs } from "../components/product-tabs";
+import { ProductItem } from "../components/product-item";
 import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
 import "../styles/index.scss";
+import { graphql } from "gatsby";
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  console.log(data);
   return (
     <>
       <Helmet>
@@ -56,8 +59,9 @@ const IndexPage = () => {
             <h2>Products</h2>
             <ProductTabs />
             <div className="gallery">
-              <img src="https://placekitten.com/300/300" alt="" />
-              <img src="https://placekitten.com/300/300" alt="" />
+              {data.allStripeProduct.nodes.map((product) => {
+                return <ProductItem product={product} key={product.id} />;
+              })}
             </div>
           </div>
         </div>
@@ -69,3 +73,20 @@ const IndexPage = () => {
 };
 
 export default IndexPage;
+export const query = graphql`
+  query IndexPageQuery {
+    allStripeProduct {
+      nodes {
+        active
+        description
+        id
+        images
+        name
+        type
+        metadata {
+          category
+        }
+      }
+    }
+  }
+`;
