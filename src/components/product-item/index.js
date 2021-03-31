@@ -6,7 +6,7 @@ export const ProductItem = ({ product }) => {
     <div className="product-item">
       <img src={product.images[0]} alt={product.name} />
       <div>{product.name}</div>
-      <div>{product.description}</div>
+      {/* <div>{product.description}</div> */}
     </div>
   );
 };

@@ -9,6 +9,8 @@ import { Footer } from "../components/footer";
 import "../styles/index.scss";
 import { graphql } from "gatsby";
 
+import "../styles/products.scss";
+
 const IndexPage = ({ data }) => {
   console.log(data);
   return (
@@ -47,7 +49,7 @@ const IndexPage = ({ data }) => {
                 can now enjoy all your sticky snacks with no fear!
               </p>
               <p>
-                Ready to enjoy flavour that is out of this world? Place an order
+                Ready to try flavour that is out of this world? Place an order
                 today!
               </p>
             </div>
