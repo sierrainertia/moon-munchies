@@ -11,4 +11,13 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  p {
+    margin-top: 40px;
+    text-align: center;
+  }
+}
+
+.products.purple {
+  background-color: $purple;
 }

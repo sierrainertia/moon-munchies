@@ -1,24 +1,31 @@
 import React, { Component } from "react";
 import "./tabs.scss";
 
+const categoryProperNames = {
+  "ice-cream": "Intergalactic Ice Cream",
+  taffy: "Moon Taffy",
+  candy: "Cosmic Candy",
+  beyond: "And Beyond",
+};
+
 export class ProductTabs extends Component {
   render() {
     return (
       <>
         <div className="productBar">
           <ul>
-            <li>
-              <button>Intergalatic Ice Cream</button>
-            </li>
-            <li>
-              <button>Moon Taffy</button>
-            </li>
-            <li>
-              <button>Cosmic Candy</button>
-            </li>
-            <li>
-              <button>And Beyond</button>
-            </li>
+            {this.props.categories.map((category) => (
+              <li key={category}>
+                <button
+                  onClick={() => this.props.onCategorySelected(category)}
+                  className={
+                    this.props.selectedCategory === category ? "active" : ""
+                  }
+                >
+                  {categoryProperNames[category]}
+                </button>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="galleryImages"></div>

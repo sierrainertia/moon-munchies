@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Header } from "../components/header";
 import { Hero } from "../components/hero";
@@ -11,8 +11,26 @@ import { graphql } from "gatsby";
 
 import "../styles/products.scss";
 
+const productThemes = ["blue", "purple", "pink"];
+
 const IndexPage = ({ data }) => {
   console.log(data);
+  const products = {};
+
+  data.allStripeProduct.nodes.forEach((product) => {
+    const category = product.metadata.category;
+
+    if (!(category in products)) {
+      products[category] = [];
+    }
+    products[category].push(product);
+  });
+
+  console.log(products);
+  const [selectedCategory, setSelectedCategory] = useState(
+    Object.keys(products)[0]
+  );
+
   return (
     <>
       <Helmet>
@@ -35,36 +53,42 @@ const IndexPage = ({ data }) => {
               <h2>About us</h2>
               <p>
                 We’re a family run business with a mission to create powerful
-                and unique candy experiences. By freeze-drying candy classics,
-                you not only intensify the flavour but provide a whole new way
-                to eat your treats.
+                and unique food experiences. By freeze-drying candy classics,
+                fruits, and much more, you not only intensify the flavours but
+                provide a whole new way to enjoy your snacks.
               </p>
               <p>Does your favourite confectionary send you to the dentist? </p>
+
               <p>
-                Do grandma and grandpa&apos;s dentures get pulled out every time
-                they take a bite of their delectable desserts?
+                Do grandma and grandpa&apos;s dentures pop out every time they
+                take a bite of their delectable desserts?
               </p>
               <p>
-                Worry no more! Freeze-dried treats melt in your mouth, so you
-                can now enjoy all your sticky snacks with no fear!
+                Worry no more! Moon Munchies freeze-dried treats melt in your
+                mouth, so you can now enjoy all your sticky snacks with no fear!
               </p>
               <p>
-                Ready to try flavour that is out of this world? Place an order
+                Ready to try flavours that are out of this world? Place an order
                 today!
               </p>
             </div>
           </div>
         </div>
 
-        <div className="products" id="products">
+        <div className={`products ${productThemes[1]}`} id="products">
           <div className="wrapper">
             <h2>Products</h2>
-            <ProductTabs />
+            <ProductTabs
+              onCategorySelected={setSelectedCategory}
+              categories={Object.keys(products)}
+              selectedCategory={selectedCategory}
+            />
             <div className="gallery">
-              {data.allStripeProduct.nodes.map((product) => {
+              {products[selectedCategory].map((product) => {
                 return <ProductItem product={product} key={product.id} />;
               })}
             </div>
+            <p>Order now, using the form below.</p>
           </div>
         </div>
       </main>

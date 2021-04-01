@@ -11,7 +11,7 @@ export const Hero = () => {
         </div>
         <div className="hero__text">
           <h1>Freeze-dried Treats</h1>
-          <p>Flavour that will take you to the moon and beyond.</p>
+          <p>Flavours that will take you to the moon and beyond.</p>
           <button>Order Now</button>
         </div>
       </div>
