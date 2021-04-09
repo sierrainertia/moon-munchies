@@ -11,10 +11,9 @@ import { graphql } from "gatsby";
 
 import "../styles/products.scss";
 
-const productThemes = ["blue", "purple", "pink"];
+const productThemes = ["purple", "blue", "pink"];
 
 const IndexPage = ({ data }) => {
-  console.log(data);
   const products = {};
 
   data.allStripeProduct.nodes.forEach((product) => {
@@ -26,10 +25,13 @@ const IndexPage = ({ data }) => {
     products[category].push(product);
   });
 
-  console.log(products);
   const [selectedCategory, setSelectedCategory] = useState(
     Object.keys(products)[0]
   );
+  const selectedCategoryIndex =
+    Object.keys(products).findIndex((c) => {
+      return c === selectedCategory;
+    }) % productThemes.length;
 
   return (
     <>
@@ -61,7 +63,7 @@ const IndexPage = ({ data }) => {
 
               <p>
                 Do grandma and grandpa&apos;s dentures pop out every time they
-                take a bite of their delectable desserts?
+                take a bite of their delectable dessepy0brts?
               </p>
               <p>
                 Worry no more! Moon Munchies freeze-dried treats melt in your
@@ -75,7 +77,10 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
 
-        <div className={`products ${productThemes[1]}`} id="products">
+        <div
+          className={`products ${productThemes[selectedCategoryIndex]}`}
+          id="products"
+        >
           <div className="wrapper">
             <h2>Products</h2>
             <ProductTabs

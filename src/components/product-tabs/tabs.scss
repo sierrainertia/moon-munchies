@@ -22,7 +22,7 @@
       background-color: transparent;
       padding: 15px 20px;
       font-weight: 700;
-      transition: 0.1s;
+      // transition: 0.1s;
 
       &.active,
       &:hover {
@@ -43,6 +43,32 @@
         &.active,
         &:hover {
           background-color: $dark-purple;
+        }
+      }
+    }
+  }
+}
+
+.blue {
+  .productBar ul {
+    li {
+      button {
+        &.active,
+        &:hover {
+          background-color: $dark-blue;
+        }
+      }
+    }
+  }
+}
+
+.pink {
+  .productBar ul {
+    li {
+      button {
+        &.active,
+        &:hover {
+          background-color: $dark-pink;
         }
       }
     }

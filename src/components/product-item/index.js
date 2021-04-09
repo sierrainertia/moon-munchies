@@ -4,7 +4,9 @@ import "./index.scss";
 export const ProductItem = ({ product }) => {
   return (
     <div className="product-item">
-      <img src={product.images[0]} alt={product.name} />
+      <div className="product-item__image">
+        <img src={product.images[0]} alt={product.name} />
+      </div>
       <div>{product.name}</div>
       {/* <div>{product.description}</div> */}
     </div>

@@ -6,7 +6,9 @@ export const ContactSection = () => {
     <section className="contact-section" id="contact">
       <div className="wrapper">
         <h2>Contact</h2>
-        <p>Fill out the form below to chat with us!</p>
+        <p>
+          To place an order or for business inquiries fill out the form below!
+        </p>
         <form
           name="contact"
           className="contact-section__email-form"
