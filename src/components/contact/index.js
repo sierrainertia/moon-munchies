@@ -7,7 +7,7 @@ export const ContactSection = () => {
       <div className="wrapper">
         <h2>Contact</h2>
         <p>
-          To place an order or for business inquiries fill out the form below!
+          To place an order or for business inquiries fill out the form below.
         </p>
         <form
           name="contact"

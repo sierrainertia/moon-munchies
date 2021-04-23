@@ -10,7 +10,7 @@ export const About = () => {
           <p>
             {/* We’re a family run business with a mission to create powerful and
             unique food experiences. By freeze-drying */}
-            Moon Munchies creates freeze-dried candy, fruits, and much more. By
+            Moon Munchies creates freeze-dried candy, fruits, and much more! By
             doing this we intensify the flavours and provides a whole new way to
             enjoy your snacks.
           </p>
