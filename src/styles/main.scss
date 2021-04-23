@@ -1,32 +1,3 @@
-.aboutUs {
-  display: flex;
-  margin: 50px 0;
-
-  img {
-    width: 400px;
-    margin: 20px 20px 20px 0;
-  }
-  .info {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    justify-content: center;
-
-    h2 {
-      margin-bottom: 20px;
-      // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-      //   1px 1px 0 #000;
-    }
-
-    p {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  }
-}
-
 .products {
   margin-top: 70px;
   p {

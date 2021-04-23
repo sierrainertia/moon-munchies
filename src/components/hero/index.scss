@@ -79,6 +79,12 @@
     border: none;
     font-size: 18px;
     font-weight: 700;
+    transition: 0.1s;
+
+    &:hover,
+    &:focus {
+      background-color: $dark-purple;
+    }
 
     @include tablet {
       width: 100%;

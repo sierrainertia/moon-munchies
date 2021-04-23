@@ -4,11 +4,11 @@ import "./index.scss";
 export const Footer = () => {
   return (
     <footer className="footer">
+      <div className="footer__logo">
+        <span className="moon-munchies">Moon Munchies</span>
+        <span>Freeze-dried Treats</span>
+      </div>
       <section className="footer__links">
-        <div className="footer__logo">
-          <span className="moon-munchies">Moon Munchies</span>
-          <span>Freeze-dried Treats</span>
-        </div>
         <div>
           <header>Links</header>
           <ul>
@@ -23,7 +23,6 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-
         <div>
           <header>Follow us</header>
           <ul className="footer__social-links">

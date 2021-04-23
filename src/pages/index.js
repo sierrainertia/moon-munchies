@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Header } from "../components/header";
 import { Hero } from "../components/hero";
-import { ProductTabs } from "../components/product-tabs";
-import { ProductItem } from "../components/product-item";
+import { About } from "../components/about";
+// import { ProductTabs } from "../components/product-tabs";
+// import { ProductItem } from "../components/product-item";
 import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
 import "../styles/index.scss";
@@ -11,7 +12,7 @@ import { graphql } from "gatsby";
 
 import "../styles/products.scss";
 
-const productThemes = ["purple", "blue", "pink"];
+// const productThemes = ["purple", "blue", "pink"];
 
 const IndexPage = ({ data }) => {
   const products = {};
@@ -25,13 +26,13 @@ const IndexPage = ({ data }) => {
     products[category].push(product);
   });
 
-  const [selectedCategory, setSelectedCategory] = useState(
-    Object.keys(products)[0]
-  );
-  const selectedCategoryIndex =
-    Object.keys(products).findIndex((c) => {
-      return c === selectedCategory;
-    }) % productThemes.length;
+  // const [selectedCategory, setSelectedCategory] = useState(
+  //   Object.keys(products)[0]
+  // );
+  // const selectedCategoryIndex =
+  //   Object.keys(products).findIndex((c) => {
+  //     return c === selectedCategory;
+  //   }) % productThemes.length;
 
   return (
     <>
@@ -47,37 +48,9 @@ const IndexPage = ({ data }) => {
       <Header />
 
       <Hero />
-
+      <About />
       <main>
-        <div className="wrapper">
-          <div className="aboutUs" id="about">
-            <div className="info">
-              <h2>About us</h2>
-              <p>
-                We’re a family run business with a mission to create powerful
-                and unique food experiences. By freeze-drying candy classics,
-                fruits, and much more, you not only intensify the flavours but
-                provide a whole new way to enjoy your snacks.
-              </p>
-              <p>Does your favourite confectionary send you to the dentist? </p>
-
-              <p>
-                Do grandma and grandpa&apos;s dentures pop out every time they
-                take a bite of their delectable dessepy0brts?
-              </p>
-              <p>
-                Worry no more! Moon Munchies freeze-dried treats melt in your
-                mouth, so you can now enjoy all your sticky snacks with no fear!
-              </p>
-              <p>
-                Ready to try flavours that are out of this world? Place an order
-                today!
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div
+        {/* <div
           className={`products ${productThemes[selectedCategoryIndex]}`}
           id="products"
         >
@@ -95,7 +68,7 @@ const IndexPage = ({ data }) => {
             </div>
             <p>Order now, using the form below.</p>
           </div>
-        </div>
+        </div> */}
       </main>
       <ContactSection />
       <Footer />

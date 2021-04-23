@@ -86,7 +86,8 @@
       font-size: 20px;
       color: black;
 
-      a:hover {
+      a:hover,
+      a:focus {
         text-decoration: underline;
       }
     }
@@ -108,7 +109,8 @@
         font-size: 36px;
       }
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $dark-purple;
 
         svg {
