@@ -20,7 +20,10 @@
 
   &__items-wrapper {
     display: flex;
-    grid-gap: 20px;
+
+    & > * + * {
+      margin-left: 20px;
+    }
 
     @include tablet {
       display: none;
@@ -82,9 +85,12 @@
 
     ul {
       display: flex;
-      grid-gap: 40px;
       font-size: 20px;
       color: black;
+
+      & > * + * {
+        margin-left: 20px;
+      }
 
       a:hover,
       a:focus {
@@ -95,11 +101,16 @@
 
   &__social-links {
     display: flex;
-    grid-gap: 20px;
     align-items: center;
 
+    & > * + * {
+      margin-left: 20px;
+    }
+
     @include tablet {
-      grid-gap: 40px;
+      & > * + * {
+        margin-left: 40px;
+      }
     }
 
     a {

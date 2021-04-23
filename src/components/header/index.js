@@ -60,9 +60,9 @@ export const Header = () => {
               <li>
                 <a href="#about">About us</a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#products">Products</a>
-              </li>
+              </li> */}
             </ul>
           </nav>
           <ul className="nav-bar__social-links">
