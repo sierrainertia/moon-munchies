@@ -12,7 +12,7 @@ export const Hero = () => {
         <div className="hero__text">
           <h1>Freeze-dried Treats</h1>
           <p>Flavours that will take you to the moon and beyond.</p>
-          <button>Order Now</button>
+          <a href="#contact">Order Now</a>
         </div>
       </div>
     </div>
