@@ -9,6 +9,11 @@ export const ContactSection = () => {
         <p>
           To place an order or for business inquiries fill out the form below.
         </p>
+        <p>
+          <a href="/moon-munchies-menu.pdf" target="_blank">
+            View our menu
+          </a>
+        </p>
         <form
           name="contact"
           className="contact-section__email-form"
@@ -24,7 +29,7 @@ export const ContactSection = () => {
           />
           <textarea
             name="message"
-            placeholder="Your message here..."
+            placeholder="Write your order or inquiry here 😊"
             required
           ></textarea>
           <button type="submit">Submit</button>

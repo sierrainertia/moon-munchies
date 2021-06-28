@@ -7,6 +7,16 @@
     text-align: center;
   }
 
+  a {
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+
+    &:hover {
+      color: $dark-purple;
+    }
+  }
+
   &__email-form {
     max-width: 800px;
     margin: 0 auto;
