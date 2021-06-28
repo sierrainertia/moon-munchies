@@ -29,7 +29,7 @@ export const ContactSection = () => {
           />
           <textarea
             name="message"
-            placeholder="Write your order or inquiry here 😊"
+            placeholder="Write your order or message here 😊"
             required
           ></textarea>
           <button type="submit">Submit</button>
