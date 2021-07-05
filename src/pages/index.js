@@ -66,7 +66,7 @@ const IndexPage = ({ data }) => {
                 return <ProductItem product={product} key={product.id} />;
               })}
             </div>
-            <p>Order now, using the form below.</p>
+            <p>Order now using the form below.</p>
           </div>
         </div>
       </main>
