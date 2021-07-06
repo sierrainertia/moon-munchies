@@ -1,4 +1,5 @@
 @import "../styles/variables.scss";
+@import "./breakpoints.scss";
 
 .products {
   background-color: $blue;
@@ -7,6 +8,7 @@
   h2 {
     text-align: center;
   }
+
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -14,6 +16,45 @@
     column-gap: 20px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+
+  .orderNowBanner {
+    padding: 10px 16px;
+    background: transparent;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 20px;
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+
+    a {
+      display: block;
+      width: 100%;
+      height: 60px;
+      background: $black;
+      border-radius: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      transition: 0.1s;
+      text-decoration: none;
+      margin: 0 auto;
+
+      &:hover,
+      &:focus {
+        background-color: $dark-purple;
+      }
+    }
   }
 
   p {

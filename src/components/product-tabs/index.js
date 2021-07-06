@@ -36,7 +36,6 @@ export class ProductTabs extends Component {
               ))}
           </ul>
         </div>
-        <div className="galleryImages"></div>
       </>
     );
   }

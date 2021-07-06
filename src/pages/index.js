@@ -26,9 +26,7 @@ const IndexPage = ({ data }) => {
     products[category].push(product);
   });
 
-  const [selectedCategory, setSelectedCategory] = useState(
-    Object.keys(products)[0]
-  );
+  const [selectedCategory, setSelectedCategory] = useState("taffy");
   const selectedCategoryIndex =
     Object.keys(products).findIndex((c) => {
       return c === selectedCategory;
@@ -61,6 +59,9 @@ const IndexPage = ({ data }) => {
               categories={Object.keys(products)}
               selectedCategory={selectedCategory}
             />
+            <div className="orderNowBanner">
+              <a href="#contact">Order Now</a>
+            </div>
             <div className="gallery">
               {products[selectedCategory].map((product) => {
                 return <ProductItem product={product} key={product.id} />;

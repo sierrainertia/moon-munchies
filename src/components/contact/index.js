@@ -9,11 +9,11 @@ export const ContactSection = () => {
         <p>
           To place an order or for business inquiries fill out the form below.
         </p>
-        <p>
+        {/* <p>
           <a href="/moon-munchies-menu.pdf" target="_blank">
             View our menu
           </a>
-        </p>
+        </p> */}
         <form
           name="contact"
           className="contact-section__email-form"
