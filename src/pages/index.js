@@ -54,6 +54,7 @@ const IndexPage = ({ data }) => {
         >
           <div className="wrapper">
             <h2>Products</h2>
+            <h3>$7 per bag</h3>
             <ProductTabs
               onCategorySelected={setSelectedCategory}
               categories={Object.keys(products)}

@@ -9,6 +9,12 @@
     text-align: center;
   }
 
+  h3 {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
