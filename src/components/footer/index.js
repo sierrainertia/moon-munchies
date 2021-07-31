@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer__logo">
         <span className="moon-munchies">Moon Munchies</span>
-        <span>Freeze-dried Treats</span>
+        <span>Freeze-dried Snacks</span>
       </div>
       <section className="footer__links">
         <div>

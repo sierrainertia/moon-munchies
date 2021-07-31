@@ -10,9 +10,9 @@ export const Hero = () => {
           <img src={heroImage} />
         </div>
         <div className="hero__text">
-          <h1>Freeze-dried Treats</h1>
+          <h1>Freeze-dried Snacks</h1>
           <p>Flavours that will take you to the moon and beyond.</p>
-          <a href="#contact">Order Now</a>
+          <a href="#products">Order Now</a>
         </div>
       </div>
     </div>

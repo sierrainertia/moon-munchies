@@ -1,4 +1,8 @@
-/* global module */
+/* global module, require, process */
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -16,16 +20,8 @@ module.exports = {
     {
       resolve: `gatsby-source-stripe`,
       options: {
-        objects: [
-          "Balance",
-          "BalanceTransaction",
-          "Product",
-          "ApplicationFee",
-          "Sku",
-          "Subscription",
-        ],
-        secretKey:
-          "sk_test_51Ia4qDGncOwLsgTJKcaTgIKClUQBNsOXPc5TiaUPOV0RqW9BwfDanU1GjyYXewQST5E8fluHpZfD8HLItNfIqMsk00kxaECvUw",
+        objects: ["Product", "Price"],
+        secretKey: process.env.STRIPE_SECRET_KEY,
         downloadFiles: true,
       },
     },

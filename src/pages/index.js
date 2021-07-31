@@ -1,5 +1,8 @@
+/* global process */
 import React, { useState } from "react";
+import { CartProvider } from "use-shopping-cart";
 import { Helmet } from "react-helmet";
+import { graphql } from "gatsby";
 import { Header } from "../components/header";
 import { Hero } from "../components/hero";
 import { About } from "../components/about";
@@ -8,32 +11,41 @@ import { ProductItem } from "../components/product-item";
 import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
 import "../styles/index.scss";
-import { graphql } from "gatsby";
-
 import "../styles/products.scss";
+
+const stripeKey = process.env.GATSBY_STRIPE_PUBLISHABLE_KEY;
 
 const productThemes = ["purple", "blue", "pink"];
 
 const IndexPage = ({ data }) => {
-  const products = {};
+  const productsByCategory = {};
 
-  data.allStripeProduct.nodes.forEach((product) => {
-    const category = product.metadata.category;
+  data.allStripePrice.nodes.forEach((price) => {
+    const category = price.product.metadata.category;
 
-    if (!(category in products)) {
-      products[category] = [];
+    if (!(category in productsByCategory)) {
+      productsByCategory[category] = [];
     }
-    products[category].push(product);
+    productsByCategory[category].push(price);
   });
 
   const [selectedCategory, setSelectedCategory] = useState("taffy");
   const selectedCategoryIndex =
-    Object.keys(products).findIndex((c) => {
+    Object.keys(productsByCategory).findIndex((c) => {
       return c === selectedCategory;
     }) % productThemes.length;
 
   return (
-    <>
+    <CartProvider
+      mode="payment"
+      cartMode="client-only"
+      stripe={stripeKey}
+      successUrl={`${window.location.origin}/test/`}
+      cancelUrl={`${window.location.origin}/`}
+      currency="CAD"
+      allowedCountries={["CA"]}
+      billingAddressCollection={true}
+    >
       <Helmet>
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
@@ -54,43 +66,46 @@ const IndexPage = ({ data }) => {
         >
           <div className="wrapper">
             <h2>Products</h2>
-            <h3>$7 per bag</h3>
             <ProductTabs
               onCategorySelected={setSelectedCategory}
-              categories={Object.keys(products)}
+              categories={Object.keys(productsByCategory)}
               selectedCategory={selectedCategory}
             />
             <div className="orderNowBanner">
-              <a href="#contact">Order Now</a>
+              <a href="#products">Order Now</a>
             </div>
             <div className="gallery">
-              {products[selectedCategory].map((product) => {
+              {productsByCategory[selectedCategory].map((product) => {
                 return <ProductItem product={product} key={product.id} />;
               })}
             </div>
-            <p>Order now using the form below.</p>
           </div>
         </div>
       </main>
       <ContactSection />
       <Footer />
-    </>
+    </CartProvider>
   );
 };
 
 export default IndexPage;
 export const query = graphql`
   query IndexPageQuery {
-    allStripeProduct {
+    allStripePrice {
       nodes {
-        active
-        description
         id
-        images
-        name
-        type
-        metadata {
-          category
+        currency
+        unit_amount
+        product {
+          active
+          description
+          id
+          images
+          name
+          type
+          metadata {
+            category
+          }
         }
       }
     }

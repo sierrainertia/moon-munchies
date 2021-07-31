@@ -18,7 +18,7 @@ export const About = () => {
             a bite of their delectable desserts?
           </p>
           <p>
-            Worry no more! Moon Munchies freeze-dried treats melt in your mouth,
+            Worry no more! Moon Munchies freeze-dried snacks melt in your mouth,
             so you can now enjoy all your sticky snacks with no fear!
           </p>
           <p>

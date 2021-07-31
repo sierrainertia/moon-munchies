@@ -1,10 +1,14 @@
 .product-item {
-  &__image {
+  &__container {
     width: 100%;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.536);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 30px;
+    background-color: white;
     overflow: hidden;
-    margin-bottom: 20px;
+  }
+
+  &__image {
+    overflow: hidden;
     position: relative;
 
     &::before {
@@ -23,6 +27,15 @@
       top: 0;
       left: 0;
     }
+  }
+
+  &__contents {
+    padding: 25px;
+  }
+
+  &__price-box {
+    display: flex;
+    justify-content: space-between;
   }
 
   div {
