@@ -10,6 +10,7 @@ import { ProductTabs } from "../components/product-tabs";
 import { ProductItem } from "../components/product-item";
 import { ContactSection } from "../components/contact";
 import { Footer } from "../components/footer";
+import { Cart } from "../components/cart";
 import "../styles/index.scss";
 import "../styles/products.scss";
 
@@ -40,11 +41,11 @@ const IndexPage = ({ data }) => {
       mode="payment"
       cartMode="client-only"
       stripe={stripeKey}
-      successUrl={`${window.location.origin}/test/`}
-      cancelUrl={`${window.location.origin}/`}
+      successUrl={`${window.location.origin}/success/`}
+      cancelUrl={`${window.location.origin}`}
       currency="CAD"
       allowedCountries={["CA"]}
-      billingAddressCollection={true}
+      // billingAddressCollection={true} only set to true for delivery orders
     >
       <Helmet>
         <script
@@ -71,9 +72,6 @@ const IndexPage = ({ data }) => {
               categories={Object.keys(productsByCategory)}
               selectedCategory={selectedCategory}
             />
-            <div className="orderNowBanner">
-              <a href="#products">Order Now</a>
-            </div>
             <div className="gallery">
               {productsByCategory[selectedCategory].map((product) => {
                 return <ProductItem product={product} key={product.id} />;
@@ -84,11 +82,13 @@ const IndexPage = ({ data }) => {
       </main>
       <ContactSection />
       <Footer />
+      <Cart prices={data.allStripePrice.nodes} />
     </CartProvider>
   );
 };
 
 export default IndexPage;
+
 export const query = graphql`
   query IndexPageQuery {
     allStripePrice {

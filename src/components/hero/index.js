@@ -1,5 +1,6 @@
 import React from "react";
 import heroImage from "../../images/hero-image.png";
+import { AnchorLink } from "../anchor-link";
 import "./index.scss";
 
 export const Hero = () => {
@@ -12,7 +13,7 @@ export const Hero = () => {
         <div className="hero__text">
           <h1>Freeze-dried Snacks</h1>
           <p>Flavours that will take you to the moon and beyond.</p>
-          <a href="#products">Order Now</a>
+          <AnchorLink href="#products">Order Now</AnchorLink>
         </div>
       </div>
     </div>

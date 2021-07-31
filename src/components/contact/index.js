@@ -7,11 +7,6 @@ export const ContactSection = () => {
       <div className="wrapper">
         <h2>Contact</h2>
         <p>For business inquiries fill out the form below.</p>
-        {/* <p>
-          <a href="/moon-munchies-menu.pdf" target="_blank">
-            View our menu
-          </a>
-        </p> */}
         <form
           name="contact"
           className="contact-section__email-form"

@@ -2,12 +2,12 @@ import React, { useCallback, useMemo } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import "./index.scss";
 
-const CartInteractor = ({ product }) => {
+const CartButtons = ({ product }) => {
   const {
     addItem,
+    cartDetails,
     decrementItem,
     incrementItem,
-    cartDetails,
   } = useShoppingCart();
 
   const addItemToCart = useCallback(
@@ -17,23 +17,38 @@ const CartInteractor = ({ product }) => {
         price: product.unit_amount,
         currency: product.currency,
       }),
-    []
+    [addItem, product.currency, product.unit_amount, product.id]
   );
 
   const quantityInCart = useMemo(() => cartDetails[product.id]?.quantity ?? 0, [
     cartDetails,
+    product.id,
   ]);
 
   return (
     <>
       {quantityInCart ? (
-        <>
-          <button onClick={() => decrementItem(product.id)}>-</button>
-          {quantityInCart}
-          <button onClick={() => incrementItem(product.id)}>+</button>
-        </>
+        <div className="cart-buttons">
+          <button
+            className="light-btn"
+            onClick={() => decrementItem(product.id)}
+          >
+            -
+          </button>
+          <div className="cart-buttons__quantity">
+            {quantityInCart} bag{quantityInCart !== 1 ? "s" : ""}
+          </div>
+          <button
+            className="light-btn"
+            onClick={() => incrementItem(product.id)}
+          >
+            +
+          </button>
+        </div>
       ) : (
-        <button onClick={addItemToCart}>Add to cart</button>
+        <button className="light-btn" onClick={addItemToCart}>
+          Add to cart
+        </button>
       )}
     </>
   );
@@ -48,10 +63,12 @@ export const ProductItem = ({ product }) => {
           <img src={product.product.images[0]} alt={product.product.name} />
         </div>
         <div className="product-item__contents">
-          <div>{product.product.name}</div>
+          <div className="product-item__title">{product.product.name}</div>
           <div className="product-item__price-box">
-            <div>${product.unit_amount / 100}</div>
-            <CartInteractor product={product} />
+            <div className="product-item__price-tag">
+              ${product.unit_amount / 100}
+            </div>
+            <CartButtons product={product} />
           </div>
         </div>
       </div>

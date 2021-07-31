@@ -12,7 +12,6 @@ const categoryOrder = ["taffy", "candy", "desserts", "beyond"];
 
 export class ProductTabs extends Component {
   render() {
-    console.log(this.props.categories);
     return (
       <>
         <div className="productBar">
