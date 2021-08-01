@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { useShoppingCart } from "use-shopping-cart";
+import Img from "gatsby-image";
 import "./index.scss";
 
 const CartButtons = ({ product }) => {
@@ -56,11 +57,19 @@ const CartButtons = ({ product }) => {
 
 // product is a misnomer here, it's actually a 'price'
 export const ProductItem = ({ product }) => {
+  const imgData = product.product.localFiles[0].childImageSharp.fluid;
+
   return (
     <div className="product-item">
       <div className="product-item__container">
         <div className="product-item__image">
-          <img src={product.product.images[0]} alt={product.product.name} />
+          <Img fluid={imgData} />
+          {/* <pre>
+            {JSON.stringify(
+              product.product.localFiles[0].childImageSharp.fluid
+            )}
+          </pre> */}
+          {/* <img src={product.product.images[0]} alt={product.product.name} /> */}
         </div>
         <div className="product-item__contents">
           <div className="product-item__title">{product.product.name}</div>

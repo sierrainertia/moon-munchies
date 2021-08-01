@@ -17,9 +17,5 @@ export const AnchorLink = ({ children, href }) => {
     [href]
   );
 
-  return (
-    <a onClick={goToAnchor} href={href}>
-      {children}
-    </a>
-  );
+  return <a href={href}>{children}</a>;
 };

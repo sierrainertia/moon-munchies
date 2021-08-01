@@ -13,16 +13,12 @@
     overflow: hidden;
     position: relative;
 
-    &::before {
-      width: 100%;
-      padding-top: 110%;
-      content: "";
-      display: block;
+    .gatsby-image-wrapper > div {
+      padding-bottom: 110% !important;
     }
 
     img {
       width: 100%;
-      height: 100%;
       object-fit: cover;
       object-position: bottom;
       position: absolute;

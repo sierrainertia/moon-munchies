@@ -1,5 +1,7 @@
 /* global module, require, process */
 
+console.warn(`Using the .env.${process.env.NODE_ENV} configuration file`);
+
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -11,6 +13,9 @@ module.exports = {
   plugins: [
     "gatsby-plugin-sass",
     "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-transformer-sharp`,
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -13,14 +13,21 @@ export const ContactSection = () => {
           data-netlify="true"
         >
           <input type="hidden" name="form-name" value="contact" />
-
+          <label className="visually-hidden" htmlFor="contact-email">
+            Email
+          </label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             placeholder="your@email.com"
             required
           />
+          <label className="visually-hidden" htmlFor="contact-message">
+            Message
+          </label>
           <textarea
+            id="contact-message"
             name="message"
             placeholder="Write your message here 😊"
             required
