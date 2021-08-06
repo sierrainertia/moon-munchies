@@ -22,13 +22,9 @@ export const About = () => {
             so you can now enjoy all your sticky snacks with no fear!
           </p>
           <p>
-            Ready to try flavours that are out of this world? Place an order
-            today!
+          Ready to try flavours that are out of this world? Moon Munchies are available for pick up and delivery.
           </p>
-          <p>
-            Need your fix? Moon Munchies are available for pick up and delivery.
-            Place an order today or find us at any of the below locations:
-          </p>
+          <p>Place an order today or find us at any of the below locations:</p>
           <ul>
             <li>
               <a href="https://g.page/homegrowninab?share" target="_blank">
