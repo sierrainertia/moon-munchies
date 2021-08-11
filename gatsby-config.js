@@ -37,5 +37,11 @@ module.exports = {
         downloadFiles: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["URL"],
+      },
+    },
   ],
 };

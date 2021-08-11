@@ -23,6 +23,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "gatsby": "^2.26.1",
     "gatsby-image": "^3.10.0",
+    "gatsby-plugin-env-variables": "^2.1.0",
     "gatsby-plugin-manifest": "^3.3.0",
     "gatsby-plugin-sass": "^3.0.0",
     "gatsby-plugin-sharp": "^3.3.1",
