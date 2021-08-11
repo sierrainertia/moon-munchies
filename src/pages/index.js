@@ -45,8 +45,8 @@ const IndexPage = ({ data }) => {
         mode="payment"
         cartMode="client-only"
         stripe={stripeKey}
-        successUrl={`${window.location.origin}/success/`}
-        cancelUrl={`${window.location.origin}`}
+        successUrl={`${process.env.URL}/success/`}
+        cancelUrl={`${process.env.URL}`}
         currency="CAD"
         allowedCountries={value === "DELIVERY" ? ["CA"] : []} // CA somehow just enables shipping address collection
       >

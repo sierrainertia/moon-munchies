@@ -8,7 +8,7 @@ dotenv.config({
 });
 
 if (process.env.CONTEXT !== "production") {
-  console.warn(`Using the .env.${process.env.NODE_ENV} configuration file`);
+  console.warn(`Using the .env.development configuration file`);
   const envConfig = dotenv.parse(fs.readFileSync(".env.development"));
   for (const k in envConfig) {
     process.env[k] = envConfig[k];
