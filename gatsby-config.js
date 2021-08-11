@@ -1,10 +1,21 @@
 /* global module, require, process */
 
-console.warn(`Using the .env.${process.env.NODE_ENV} configuration file`);
+const fs = require("fs");
+const dotenv = require("dotenv");
 
-require("dotenv").config({
+dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+
+if (process.env.NODE_ENV === "development") {
+  console.warn(`Using the .env.${process.env.NODE_ENV} configuration file`);
+  const envConfig = dotenv.parse(fs.readFileSync(".env.development"));
+  for (const k in envConfig) {
+    process.env[k] = envConfig[k];
+  }
+} else {
+  console.warn(`Falling back to real environment variables`);
+}
 
 module.exports = {
   siteMetadata: {
