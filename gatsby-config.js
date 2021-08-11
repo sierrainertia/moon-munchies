@@ -7,14 +7,14 @@ dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.CONTEXT !== "production") {
   console.warn(`Using the .env.${process.env.NODE_ENV} configuration file`);
   const envConfig = dotenv.parse(fs.readFileSync(".env.development"));
   for (const k in envConfig) {
     process.env[k] = envConfig[k];
   }
 } else {
-  console.warn(`Falling back to real environment variables`);
+  console.warn(`Falling back to production environment variables`);
 }
 
 module.exports = {
