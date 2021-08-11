@@ -39,14 +39,22 @@ const IndexPage = ({ data }) => {
 
   const { value } = useDeliveryContext();
 
+  let baseUrl;
+
+  if (typeof window !== undefined) {
+    baseUrl = window.location.origin;
+  } else {
+    baseUrl = process.env.URL;
+  }
+
   return (
     <>
       <CartProvider
         mode="payment"
         cartMode="client-only"
         stripe={stripeKey}
-        successUrl={`${process.env.URL}/success/`}
-        cancelUrl={`${process.env.URL}`}
+        successUrl={`${baseUrl}/success/`}
+        cancelUrl={baseUrl}
         currency="CAD"
         allowedCountries={value === "DELIVERY" ? ["CA"] : []} // CA somehow just enables shipping address collection
       >
