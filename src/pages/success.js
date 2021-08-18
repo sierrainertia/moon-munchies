@@ -8,9 +8,7 @@ const OrderSuccessPage = () => {
   const [startConfetti, setStartConfetti] = useState(false);
 
   useLayoutEffect(() => {
-    console.log("a");
     const handle = window.setTimeout(() => {
-      console.log("b");
       setStartConfetti(true);
     }, 1000); // Give the page a bit of time to load
 
@@ -25,17 +23,17 @@ const OrderSuccessPage = () => {
           shortly.
         </p>
       </SimplePageContents>
-      <pre>{JSON.stringify(startConfetti)}</pre>
-      <Confetti
-        width={width}
-        height={height}
-        run={startConfetti}
-        numberOfPieces={500}
-        initialVelocityX={2}
-        initialVelocityY={10}
-        confettiSource={{ x: 0, y: -20, w: width, h: 0 }}
-        recycle={false}
-      />
+      {startConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          numberOfPieces={500}
+          initialVelocityX={2}
+          initialVelocityY={10}
+          confettiSource={{ x: 0, y: -20, w: width, h: 0 }}
+          recycle={false}
+        />
+      )}
     </>
   );
 };
