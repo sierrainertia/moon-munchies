@@ -126,30 +126,33 @@ export const Cart = ({ prices }) => {
               How would you like to receive you order?
             </p>
             <div className="cart__pickup-options-container">
-              <input
-                type="radio"
-                id="shipping-mode-pickup"
-                checked={value === "PICKUP"}
-                onChange={() => setValue("PICKUP")}
-              />
-              <label htmlFor="shipping-mode-pickup">Pickup</label>
-              <input
-                type="radio"
-                id="shipping-mode-delivery"
-                checked={value === "DELIVERY"}
-                onChange={() => setValue("DELIVERY")}
-              />
-              <label htmlFor="shipping-mode-delivery">Delivery</label>
+              <div>
+                <input
+                  type="radio"
+                  id="shipping-mode-pickup"
+                  checked={value === "PICKUP"}
+                  onChange={() => setValue("PICKUP")}
+                />
+                <label htmlFor="shipping-mode-pickup">
+                  Pickup (Calgary area only)
+                </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="shipping-mode-delivery"
+                  checked={value === "DELIVERY"}
+                  onChange={() => setValue("DELIVERY")}
+                />
+                <label htmlFor="shipping-mode-delivery">Delivery</label>
+              </div>
             </div>
           </div>
           <div className="cart__checkout-button-box">
             {value === "PICKUP" ? (
               <p>Pickup must be done in Airdrie, AB</p>
             ) : (
-              <p>
-                Delivery is currently only possible within Airdrie and the
-                surrounding region
-              </p>
+              <p>Delivery is possible in Canada only</p>
             )}
             <button className="primary-btn" onClick={redirectToCheckout}>
               Proceed to payment
