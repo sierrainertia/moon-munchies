@@ -48,53 +48,51 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <>
-      <CartProvider
-        mode="payment"
-        cartMode="client-only"
-        stripe={stripeKey}
-        successUrl={`${baseUrl}/success/`}
-        cancelUrl={baseUrl}
-        currency="CAD"
-        allowedCountries={value === "DELIVERY" ? ["CA"] : []} // CA somehow just enables shipping address collection
-      >
-        <Helmet>
-          <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
-            integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
-            crossOrigin="anonymous"
-          ></script>
-        </Helmet>
+    <CartProvider
+      mode="payment"
+      cartMode="client-only"
+      stripe={stripeKey}
+      successUrl={`${baseUrl}/success/`}
+      cancelUrl={baseUrl}
+      currency="CAD"
+      allowedCountries={value === "DELIVERY" ? ["CA"] : []} // CA somehow just enables shipping address collection
+    >
+      <Helmet>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+          integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
+          crossOrigin="anonymous"
+        ></script>
+      </Helmet>
 
-        <title>Moon Munchies</title>
-        <Header />
-        <Hero />
-        <About />
-        <main>
-          <div
-            className={`products ${productThemes[selectedCategoryIndex]}`}
-            id="products"
-          >
-            <div className="wrapper">
-              <h2>Products</h2>
-              <ProductTabs
-                onCategorySelected={setSelectedCategory}
-                categories={Object.keys(productsByCategory)}
-                selectedCategory={selectedCategory}
-              />
-              <div className="gallery">
-                {productsByCategory[selectedCategory].map((product) => {
-                  return <ProductItem product={product} key={product.id} />;
-                })}
-              </div>
+      <title>Moon Munchies</title>
+      <Header />
+      <Hero />
+      <About />
+      <main>
+        <div
+          className={`products ${productThemes[selectedCategoryIndex]}`}
+          id="products"
+        >
+          <div className="wrapper">
+            <h2>Products</h2>
+            <ProductTabs
+              onCategorySelected={setSelectedCategory}
+              categories={Object.keys(productsByCategory)}
+              selectedCategory={selectedCategory}
+            />
+            <div className="gallery">
+              {productsByCategory[selectedCategory].map((product) => {
+                return <ProductItem product={product} key={product.id} />;
+              })}
             </div>
           </div>
-        </main>
-        <ContactSection />
-        <Footer />
-        <Cart prices={data.allStripePrice.nodes} />
-      </CartProvider>
-    </>
+        </div>
+      </main>
+      <ContactSection />
+      <Footer />
+      <Cart prices={data.allStripePrice.nodes} />
+    </CartProvider>
   );
 };
 
