@@ -1,22 +1,28 @@
-import React, { useLayoutEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import { useDeliveryContext } from "../delivery-provider";
 import Img from "gatsby-image";
 import "./index.scss";
 
+const DELIVERY_CUTOFF = 7000; // $70 (in cents)
+const DELIVERY_FEE_5 = "DELIVERY_FEE_5";
+const DELIVERY_FEE_20 = "DELIVERY_FEE_20";
+
 const CartItem = ({ product }) => {
   const { decrementItem, incrementItem } = useShoppingCart();
 
-  const imgData = product.product.localFiles[0].childImageSharp.fluid;
+  const imgData = product.product?.localFiles[0].childImageSharp.fluid;
 
   return (
     <div className="cart-item">
-      <Img
-        style={{ width: 75, marginRight: 20, borderRadius: 10 }}
-        fluid={imgData}
-      />
+      {imgData && (
+        <Img
+          style={{ width: 75, marginRight: 20, borderRadius: 10 }}
+          fluid={imgData}
+        />
+      )}
       <div className="cart-item__contents">
-        <div className="cart-item__title">{product.product.name}</div>
+        <div className="cart-item__title">{product.product?.name}</div>
         <div className="cart-buttons">
           <button
             className="light-btn"
@@ -43,19 +49,22 @@ export const Cart = ({ prices }) => {
   const [cartExpanded, setCartExpanded] = useState(false);
 
   const {
+    addItem,
+    setItemQuantity,
     cartCount,
     cartDetails,
     redirectToCheckout,
+    removeItem,
     totalPrice,
   } = useShoppingCart();
 
   const cartProducts = useMemo(
     () =>
       Object.values(cartDetails).map((cartItem) => {
-        const x = prices.find((price) => price.id === cartItem.id);
+        const cartItemPrice = prices.find((price) => price.id === cartItem.id);
         return {
           ...cartItem,
-          product: x.product,
+          product: cartItemPrice?.product,
         };
       }),
     [cartDetails, prices]
@@ -72,6 +81,57 @@ export const Cart = ({ prices }) => {
   }, [cartExpanded]);
 
   const { value, setValue } = useDeliveryContext();
+
+  useEffect(() => {
+    // Remove all delivery fees
+    if (value === "DELIVERY") {
+      // Add a delivery fee to the cart
+      // console.log("Total price", totalPrice, DELIVERY_CUTOFF);
+      if (totalPrice >= DELIVERY_CUTOFF) {
+        // console.log("Adding a $5 delivery fee");
+        // removeItem(DELIVERY_FEE_ID);
+        // addItem({
+        //   id: DELIVERY_FEE_ID,
+        //   price: 500,
+        //   currency: "CAD",
+        // });
+      } else {
+        // if (
+        //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_5)
+        // ) {
+        //   console.log("Clearing a $5 delivery fee");
+        //   setItemQuantity(DELIVERY_FEE_5, 0);
+        // }
+        // if (
+        //   Object.values(cartDetails).find(
+        //     (item) => item.id === DELIVERY_FEE_20 && item.quantity > 1
+        //   )
+        // ) {
+        //   console.log("Clearing excess $20 delivery fee");
+        //   setItemQuantity(DELIVERY_FEE_20, 1);
+        // } else {
+        //   console.log("Adding a $20 delivery fee");
+        //   addItem({
+        //     id: DELIVERY_FEE_20,
+        //     price: 2000,
+        //     currency: "CAD",
+        //   });
+        // }
+      }
+    } else {
+      // console.log("Removing");
+      // if (
+      //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_20)
+      // ) {
+      //   setItemQuantity(DELIVERY_FEE_20, 0);
+      // }
+      // if (
+      //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_5)
+      // ) {
+      //   setItemQuantity(DELIVERY_FEE_5, 0);
+      // }
+    }
+  }, [value, addItem, removeItem, setItemQuantity, cartDetails]);
 
   return (
     <div
