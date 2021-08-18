@@ -41,7 +41,7 @@ const IndexPage = ({ data }) => {
 
   let baseUrl;
 
-  if (typeof window !== undefined) {
+  if (typeof window !== "undefined") {
     baseUrl = window.location.origin;
   } else {
     baseUrl = process.env.URL;
