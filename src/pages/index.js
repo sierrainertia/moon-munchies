@@ -1,6 +1,4 @@
-/* global process */
 import React, { useState } from "react";
-import { CartProvider } from "use-shopping-cart";
 import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 import { Header } from "../components/header";
@@ -13,9 +11,6 @@ import { Footer } from "../components/footer";
 import { Cart } from "../components/cart";
 import "../styles/index.scss";
 import "../styles/products.scss";
-import { useDeliveryContext } from "../components/delivery-provider";
-
-const stripeKey = process.env.GATSBY_STRIPE_PUBLISHABLE_KEY;
 
 const productThemes = ["purple", "blue", "pink"];
 
@@ -37,26 +32,8 @@ const IndexPage = ({ data }) => {
       return c === selectedCategory;
     }) % productThemes.length;
 
-  const { value } = useDeliveryContext();
-
-  let baseUrl;
-
-  if (typeof window !== "undefined") {
-    baseUrl = window.location.origin;
-  } else {
-    baseUrl = process.env.URL;
-  }
-
   return (
-    <CartProvider
-      mode="payment"
-      cartMode="client-only"
-      stripe={stripeKey}
-      successUrl={`${baseUrl}/success/`}
-      cancelUrl={baseUrl}
-      currency="CAD"
-      allowedCountries={value === "DELIVERY" ? ["CA"] : []} // CA somehow just enables shipping address collection
-    >
+    <>
       <Helmet>
         <script
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
@@ -92,7 +69,7 @@ const IndexPage = ({ data }) => {
       <ContactSection />
       <Footer />
       <Cart prices={data.allStripePrice.nodes} />
-    </CartProvider>
+    </>
   );
 };
 
