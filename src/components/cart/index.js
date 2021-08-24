@@ -108,9 +108,6 @@ export const Cart = ({ prices }) => {
       0
     );
 
-    console.log("candiesInCart", candiesInCart);
-    console.log("candyTotalPrice", candyTotalPrice);
-
     if (value === "DELIVERY" && candiesInCart) {
       if (candyTotalPrice >= DELIVERY_CUTOFF) {
         if (deliveryFee20Present) {
