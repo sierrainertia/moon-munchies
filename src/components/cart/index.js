@@ -6,13 +6,11 @@ import { useDebouncedCallback } from "use-debounce";
 import "./index.scss";
 
 const DELIVERY_CUTOFF = 7000; // $70 (in cents)
-const DELIVERY_FEE_5 = "DELIVERY_FEE_5";
-const DELIVERY_FEE_20 = "DELIVERY_FEE_20";
 
 const CartItem = ({ product, deliveryFee = false }) => {
   const { decrementItem, incrementItem } = useShoppingCart();
 
-  const imgData = product.product?.localFiles[0].childImageSharp.fluid;
+  const imgData = product.product?.localFiles?.[0]?.childImageSharp.fluid;
 
   return (
     <div className="cart-item">
@@ -54,6 +52,16 @@ const CartItem = ({ product, deliveryFee = false }) => {
 export const Cart = ({ prices }) => {
   const [cartExpanded, setCartExpanded] = useState(false);
 
+  const DELIVERY_FEE_REGULAR = useMemo(
+    () => prices.find((price) => price.product.name === "DELIVERY_FEE_REGULAR"),
+    [prices]
+  );
+  const DELIVERY_FEE_DISCOUNT = useMemo(
+    () =>
+      prices.find((price) => price.product.name === "DELIVERY_FEE_DISCOUNT"),
+    [prices]
+  );
+
   const {
     addItem,
     cartCount,
@@ -88,21 +96,25 @@ export const Cart = ({ prices }) => {
   const { value, setValue } = useDeliveryContext();
 
   const _manageDeliveryFees = useDebouncedCallback(() => {
-    const deliveryFee5Present = Object.values(cartDetails).find(
-      (item) => item.id === DELIVERY_FEE_5
+    const deliveryFeeDiscountPresent = Object.values(cartDetails).find(
+      (item) => item.id === DELIVERY_FEE_DISCOUNT.id
     );
-    const deliveryFee20Present = Object.values(cartDetails).find(
-      (item) => item.id === DELIVERY_FEE_20
+
+    const deliveryFeeRegularPresent = Object.values(cartDetails).find(
+      (item) => item.id === DELIVERY_FEE_REGULAR.id
     );
+
     // Are candies in the cart?
     const candiesInCart =
       Object.values(cartDetails).filter(
-        (item) => ![DELIVERY_FEE_5, DELIVERY_FEE_20].includes(item.id)
+        (item) =>
+          ![DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id].includes(item.id)
       )?.length > 0;
+
     const candyTotalPrice = Object.values(cartDetails).reduce(
       (total, curr) =>
         total +
-        ([DELIVERY_FEE_5, DELIVERY_FEE_20].includes(curr.id)
+        ([DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id].includes(curr.id)
           ? 0
           : curr.price * curr.quantity),
       0
@@ -110,47 +122,52 @@ export const Cart = ({ prices }) => {
 
     if (value === "DELIVERY" && candiesInCart) {
       if (candyTotalPrice >= DELIVERY_CUTOFF) {
-        if (deliveryFee20Present) {
-          console.log("Removing a $20 delivery fee");
-          removeItem(DELIVERY_FEE_20);
+        if (deliveryFeeRegularPresent) {
+          console.log("Removing a regular delivery fee", DELIVERY_FEE_REGULAR);
+          removeItem(DELIVERY_FEE_REGULAR.id);
         }
-        if (!deliveryFee5Present) {
-          console.log("Adding a $5 delivery fee");
+        if (!deliveryFeeDiscountPresent) {
+          console.log("Adding a discount delivery fee", DELIVERY_FEE_DISCOUNT);
           addItem({
-            id: DELIVERY_FEE_5,
-            price: 500,
+            id: DELIVERY_FEE_DISCOUNT.id,
+            price: DELIVERY_FEE_DISCOUNT.unit_amount,
             currency: "CAD",
           });
         }
       } else {
-        if (deliveryFee5Present) {
-          console.log("Removing a $5 delivery fee");
-          removeItem(DELIVERY_FEE_5);
+        if (deliveryFeeDiscountPresent) {
+          console.log(
+            "Removing a discount delivery fee",
+            DELIVERY_FEE_DISCOUNT
+          );
+          removeItem(DELIVERY_FEE_DISCOUNT.id);
         }
-        if (!deliveryFee20Present) {
-          console.log("Adding a $20 delivery fee");
+        if (!deliveryFeeRegularPresent) {
+          console.log("Adding a regular delivery fee", DELIVERY_FEE_REGULAR);
           addItem({
-            id: DELIVERY_FEE_20,
-            price: 2000,
+            id: DELIVERY_FEE_REGULAR.id,
+            price: DELIVERY_FEE_REGULAR.unit_amount,
             currency: "CAD",
           });
         }
       }
     } else {
-      if (deliveryFee5Present) {
-        console.log("Removing a $5 delivery fee");
-        removeItem(DELIVERY_FEE_5);
+      if (deliveryFeeDiscountPresent) {
+        console.log("Removing a discount delivery fee", DELIVERY_FEE_DISCOUNT);
+        removeItem(DELIVERY_FEE_DISCOUNT.id);
       }
-      if (deliveryFee20Present) {
-        console.log("Removing a $20 delivery fee");
-        removeItem(DELIVERY_FEE_20);
+      if (deliveryFeeRegularPresent) {
+        console.log("Removing a regular delivery fee", DELIVERY_FEE_REGULAR);
+        removeItem(DELIVERY_FEE_REGULAR.id);
       }
     }
   }, 100);
 
-  useEffect(() => _manageDeliveryFees(), [
+  useEffect(_manageDeliveryFees, [
     value,
     totalPrice,
+    DELIVERY_FEE_REGULAR,
+    DELIVERY_FEE_DISCOUNT,
     _manageDeliveryFees,
   ]);
 
@@ -189,7 +206,10 @@ export const Cart = ({ prices }) => {
               <ul>
                 {cartProducts
                   .reduce((products, product) => {
-                    return product.id.indexOf("DELIVERY_") > -1
+                    return [
+                      "DELIVERY_FEE_REGULAR",
+                      "DELIVERY_FEE_DISCOUNT",
+                    ].includes(product.product.name)
                       ? [...products, product]
                       : [product, ...products];
                   }, [])
@@ -198,7 +218,10 @@ export const Cart = ({ prices }) => {
                       <li key={product.id}>
                         <CartItem
                           product={product}
-                          deliveryFee={product.id.indexOf("DELIVERY_") > -1}
+                          deliveryFee={[
+                            "DELIVERY_FEE_REGULAR",
+                            "DELIVERY_FEE_DISCOUNT",
+                          ].includes(product.product.name)}
                         />
                       </li>
                     );

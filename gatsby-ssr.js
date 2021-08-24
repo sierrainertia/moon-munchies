@@ -6,7 +6,7 @@ import BugsnagPluginReact from "@bugsnag/plugin-react";
 Bugsnag.start({
   apiKey: "17b8f3e8cc06ebd5bb9fe74c9f122c0f",
   plugins: [new BugsnagPluginReact()],
-}); // doubtful this will work tbh
+});
 
 const ErrorBoundary = Bugsnag.getPlugin("react").createErrorBoundary(React);
 

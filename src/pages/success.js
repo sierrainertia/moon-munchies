@@ -8,9 +8,7 @@ const OrderSuccessPage = () => {
   const [startConfetti, setStartConfetti] = useState(false);
 
   useLayoutEffect(() => {
-    const handle = window.setTimeout(() => {
-      setStartConfetti(true);
-    }, 1000); // Give the page a bit of time to load
+    const handle = window.setTimeout(() => setStartConfetti(true), 1000); // Give the page a bit of time to load
 
     return () => clearTimeout(handle);
   }, []);
