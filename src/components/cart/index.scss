@@ -40,6 +40,8 @@
 
   &__page {
     background-color: white;
+    max-height: 100%;
+    overflow-y: scroll;
     transition: 0.2s;
     pointer-events: none;
     padding: 20px;
