@@ -2,13 +2,14 @@ import React, { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import { useDeliveryContext } from "../delivery-provider";
 import Img from "gatsby-image";
+import { useDebouncedCallback } from "use-debounce";
 import "./index.scss";
 
 const DELIVERY_CUTOFF = 7000; // $70 (in cents)
 const DELIVERY_FEE_5 = "DELIVERY_FEE_5";
 const DELIVERY_FEE_20 = "DELIVERY_FEE_20";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, deliveryFee = false }) => {
   const { decrementItem, incrementItem } = useShoppingCart();
 
   const imgData = product.product?.localFiles[0].childImageSharp.fluid;
@@ -22,24 +23,29 @@ const CartItem = ({ product }) => {
         />
       )}
       <div className="cart-item__contents">
-        <div className="cart-item__title">{product.product?.name}</div>
-        <div className="cart-buttons">
-          <button
-            className="light-btn"
-            onClick={() => decrementItem(product.id)}
-          >
-            -
-          </button>
-          <div className="cart-buttons__quantity">
-            {product.quantity} bag{product.quantity !== 1 ? "s" : ""}
-          </div>
-          <button
-            className="light-btn"
-            onClick={() => incrementItem(product.id)}
-          >
-            +
-          </button>
+        <div className="cart-item__title">
+          {deliveryFee ? "Delivery Fee" : product.product?.name}
         </div>
+        {deliveryFee && <span>${product.price / 100}</span>}
+        {!deliveryFee && (
+          <div className="cart-buttons">
+            <button
+              className="light-btn"
+              onClick={() => decrementItem(product.id)}
+            >
+              -
+            </button>
+            <div className="cart-buttons__quantity">
+              {product.quantity} bag{product.quantity !== 1 ? "s" : ""}
+            </div>
+            <button
+              className="light-btn"
+              onClick={() => incrementItem(product.id)}
+            >
+              +
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -50,7 +56,6 @@ export const Cart = ({ prices }) => {
 
   const {
     addItem,
-    setItemQuantity,
     cartCount,
     cartDetails,
     redirectToCheckout,
@@ -82,56 +87,75 @@ export const Cart = ({ prices }) => {
 
   const { value, setValue } = useDeliveryContext();
 
-  useEffect(() => {
-    // Remove all delivery fees
-    if (value === "DELIVERY") {
-      // Add a delivery fee to the cart
-      // console.log("Total price", totalPrice, DELIVERY_CUTOFF);
-      if (totalPrice >= DELIVERY_CUTOFF) {
-        // console.log("Adding a $5 delivery fee");
-        // removeItem(DELIVERY_FEE_ID);
-        // addItem({
-        //   id: DELIVERY_FEE_ID,
-        //   price: 500,
-        //   currency: "CAD",
-        // });
+  const _manageDeliveryFees = useDebouncedCallback(() => {
+    const deliveryFee5Present = Object.values(cartDetails).find(
+      (item) => item.id === DELIVERY_FEE_5
+    );
+    const deliveryFee20Present = Object.values(cartDetails).find(
+      (item) => item.id === DELIVERY_FEE_20
+    );
+    // Are candies in the cart?
+    const candiesInCart =
+      Object.values(cartDetails).filter(
+        (item) => ![DELIVERY_FEE_5, DELIVERY_FEE_20].includes(item.id)
+      )?.length > 0;
+    const candyTotalPrice = Object.values(cartDetails).reduce(
+      (total, curr) =>
+        total +
+        ([DELIVERY_FEE_5, DELIVERY_FEE_20].includes(curr.id)
+          ? 0
+          : curr.price * curr.quantity),
+      0
+    );
+
+    console.log("candiesInCart", candiesInCart);
+    console.log("candyTotalPrice", candyTotalPrice);
+
+    if (value === "DELIVERY" && candiesInCart) {
+      if (candyTotalPrice >= DELIVERY_CUTOFF) {
+        if (deliveryFee20Present) {
+          console.log("Removing a $20 delivery fee");
+          removeItem(DELIVERY_FEE_20);
+        }
+        if (!deliveryFee5Present) {
+          console.log("Adding a $5 delivery fee");
+          addItem({
+            id: DELIVERY_FEE_5,
+            price: 500,
+            currency: "CAD",
+          });
+        }
       } else {
-        // if (
-        //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_5)
-        // ) {
-        //   console.log("Clearing a $5 delivery fee");
-        //   setItemQuantity(DELIVERY_FEE_5, 0);
-        // }
-        // if (
-        //   Object.values(cartDetails).find(
-        //     (item) => item.id === DELIVERY_FEE_20 && item.quantity > 1
-        //   )
-        // ) {
-        //   console.log("Clearing excess $20 delivery fee");
-        //   setItemQuantity(DELIVERY_FEE_20, 1);
-        // } else {
-        //   console.log("Adding a $20 delivery fee");
-        //   addItem({
-        //     id: DELIVERY_FEE_20,
-        //     price: 2000,
-        //     currency: "CAD",
-        //   });
-        // }
+        if (deliveryFee5Present) {
+          console.log("Removing a $5 delivery fee");
+          removeItem(DELIVERY_FEE_5);
+        }
+        if (!deliveryFee20Present) {
+          console.log("Adding a $20 delivery fee");
+          addItem({
+            id: DELIVERY_FEE_20,
+            price: 2000,
+            currency: "CAD",
+          });
+        }
       }
     } else {
-      // console.log("Removing");
-      // if (
-      //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_20)
-      // ) {
-      //   setItemQuantity(DELIVERY_FEE_20, 0);
-      // }
-      // if (
-      //   Object.values(cartDetails).find((item) => item.id === DELIVERY_FEE_5)
-      // ) {
-      //   setItemQuantity(DELIVERY_FEE_5, 0);
-      // }
+      if (deliveryFee5Present) {
+        console.log("Removing a $5 delivery fee");
+        removeItem(DELIVERY_FEE_5);
+      }
+      if (deliveryFee20Present) {
+        console.log("Removing a $20 delivery fee");
+        removeItem(DELIVERY_FEE_20);
+      }
     }
-  }, [value, addItem, removeItem, setItemQuantity, cartDetails]);
+  }, 100);
+
+  useEffect(() => _manageDeliveryFees(), [
+    value,
+    totalPrice,
+    _manageDeliveryFees,
+  ]);
 
   return (
     <div
@@ -164,15 +188,32 @@ export const Cart = ({ prices }) => {
         </div>
         <div className="cart__item-list">
           {cartProducts.length > 0 ? (
-            <ul>
-              {cartProducts.map((product) => {
-                return (
-                  <li key={product.id}>
-                    <CartItem product={product} />
-                  </li>
-                );
-              })}
-            </ul>
+            <>
+              <ul>
+                {cartProducts
+                  .reduce((products, product) => {
+                    return product.id.indexOf("DELIVERY_") > -1
+                      ? [...products, product]
+                      : [product, ...products];
+                  }, [])
+                  .map((product) => {
+                    return (
+                      <li key={product.id}>
+                        <CartItem
+                          product={product}
+                          deliveryFee={product.id.indexOf("DELIVERY_") > -1}
+                        />
+                      </li>
+                    );
+                  })}
+              </ul>
+              {totalPrice && (
+                <div className="cart__total">
+                  <span>Total</span>
+                  <span>${totalPrice / 100}</span>
+                </div>
+              )}
+            </>
           ) : (
             <p>
               Your cart is empty. Add some items from the list of products to
@@ -194,7 +235,7 @@ export const Cart = ({ prices }) => {
                   onChange={() => setValue("PICKUP")}
                 />
                 <label htmlFor="shipping-mode-pickup">
-                  Pickup (Calgary area only)
+                  Pickup (Calgary and surrounding area)
                 </label>
               </div>
               <div>
@@ -210,7 +251,7 @@ export const Cart = ({ prices }) => {
           </div>
           <div className="cart__checkout-button-box">
             {value === "PICKUP" ? (
-              <p>Pickup must be done in Airdrie, AB</p>
+              <></>
             ) : (
               <p>Delivery is possible in Canada only</p>
             )}

@@ -68,6 +68,18 @@
     }
   }
 
+  &__total {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 0 20px;
+
+    > span {
+      display: block;
+    }
+  }
+
   &__footer {
     display: flex;
     justify-content: space-between;
