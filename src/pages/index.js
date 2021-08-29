@@ -86,7 +86,7 @@ export const query = graphql`
         unit_amount
         product {
           active
-          description
+          # description
           id
           localFiles {
             childImageSharp {
