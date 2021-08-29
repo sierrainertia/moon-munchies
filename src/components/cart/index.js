@@ -55,12 +55,15 @@ export const Cart = ({ prices }) => {
   const [cartExpanded, setCartExpanded] = useState(false);
 
   const DELIVERY_FEE_REGULAR = useMemo(
-    () => prices.find((price) => price.product.name === "DELIVERY_FEE_REGULAR"),
+    () =>
+      prices.find((price) => price.product.metadata.delivery_fee === "regular"),
     [prices]
   );
   const DELIVERY_FEE_DISCOUNT = useMemo(
     () =>
-      prices.find((price) => price.product.name === "DELIVERY_FEE_DISCOUNT"),
+      prices.find(
+        (price) => price.product.metadata.delivery_fee === "discount"
+      ),
     [prices]
   );
 
@@ -210,28 +213,21 @@ export const Cart = ({ prices }) => {
           {cartProducts.length > 0 ? (
             <>
               <ul>
-                {cartProducts
-                  .reduce((products, product) => {
-                    return [
-                      "DELIVERY_FEE_REGULAR",
-                      "DELIVERY_FEE_DISCOUNT",
-                    ].includes(product.product.name)
-                      ? [...products, product]
-                      : [product, ...products];
-                  }, [])
-                  .map((product) => {
-                    return (
-                      <li key={product.id}>
-                        <CartItem
-                          product={product}
-                          deliveryFee={[
-                            "DELIVERY_FEE_REGULAR",
-                            "DELIVERY_FEE_DISCOUNT",
-                          ].includes(product.product.name)}
-                        />
-                      </li>
-                    );
-                  })}
+                {/* // .reduce((products, product) => {
+                //   product.product.metadata.delivery_fee
+                //     ? [...products, product]
+                //     : [product, ...products];
+                // }, []) */}
+                {cartProducts.map((product) => {
+                  return (
+                    <li key={product.id}>
+                      <CartItem
+                        product={product}
+                        deliveryFee={product.product.metadata.delivery_fee}
+                      />
+                    </li>
+                  );
+                })}
               </ul>
               {totalPrice && (
                 <div className="cart__total">

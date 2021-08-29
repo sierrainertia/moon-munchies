@@ -97,6 +97,7 @@ export const query = graphql`
           type
           metadata {
             category
+            delivery_fee
           }
         }
       }
