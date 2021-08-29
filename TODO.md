@@ -1,2 +1,1 @@
-- move all the products to production
 - add google analytics
