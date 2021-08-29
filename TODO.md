@@ -1,2 +1,3 @@
+- add a button to return to the main page from the success page
 - add google analytics
-- clear cart after purchase
+- track abandoned carts (carts that didn't get purchased)
