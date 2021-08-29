@@ -3,6 +3,11 @@
 const fs = require("fs");
 const dotenv = require("dotenv");
 
+const obfuscate = (str) =>
+  Array.from(str)
+    .map((c, i) => (i < 5 || i > str.length - 5 ? c : "."))
+    .join("");
+
 if (process.env.CONTEXT !== "production") {
   console.warn(`Using the .env.development configuration file`);
   const envConfig = dotenv.parse(fs.readFileSync(".env.development"));
@@ -12,6 +17,12 @@ if (process.env.CONTEXT !== "production") {
 } else {
   console.warn(`Falling back to production environment variables`);
 }
+
+console.log("STRIPE_SECRET_KEY", obfuscate(process.env["STRIPE_SECRET_KEY"]));
+console.log(
+  "GATSBY_STRIPE_PUBLISHABLE_KEY",
+  obfuscate(process.env["GATSBY_STRIPE_PUBLISHABLE_KEY"])
+);
 
 module.exports = {
   siteMetadata: {

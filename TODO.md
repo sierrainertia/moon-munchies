@@ -1,1 +1,2 @@
 - add google analytics
+- clear cart after purchase
