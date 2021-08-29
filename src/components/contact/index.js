@@ -6,30 +6,30 @@ export const ContactSection = () => {
     <section className="contact-section" id="contact">
       <div className="wrapper">
         <h2>Contact</h2>
-        <p>
-          To place an order or for business inquiries fill out the form below.
-        </p>
-        {/* <p>
-          <a href="/moon-munchies-menu.pdf" target="_blank">
-            View our menu
-          </a>
-        </p> */}
+        <p>For business inquiries fill out the form below.</p>
         <form
           name="contact"
           className="contact-section__email-form"
           data-netlify="true"
         >
           <input type="hidden" name="form-name" value="contact" />
-
+          <label className="visually-hidden" htmlFor="contact-email">
+            Email
+          </label>
           <input
+            id="contact-email"
             type="email"
             name="email"
             placeholder="your@email.com"
             required
           />
+          <label className="visually-hidden" htmlFor="contact-message">
+            Message
+          </label>
           <textarea
+            id="contact-message"
             name="message"
-            placeholder="Write your order or message here 😊"
+            placeholder="Write your message here 😊"
             required
           ></textarea>
           <button type="submit">Submit</button>

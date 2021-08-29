@@ -1,0 +1,15 @@
+.simple-page-contents {
+  padding: 30px;
+  margin-top: 100px;
+
+  &__header {
+    font-weight: bold;
+    font-size: 48px;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  &__body {
+    text-align: center;
+  }
+}

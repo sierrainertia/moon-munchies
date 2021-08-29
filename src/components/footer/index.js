@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer className="footer">
       <div className="footer__logo">
         <span className="moon-munchies">Moon Munchies</span>
-        <span>Freeze-dried Treats</span>
+        <span>Freeze-dried Snacks</span>
       </div>
       <section className="footer__links">
         <div>
@@ -31,6 +31,7 @@ export const Footer = () => {
                 href="https://www.facebook.com/MoonMunchies"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Facebook"
               >
                 <i className="fab fa-facebook"></i>
               </a>
@@ -40,12 +41,13 @@ export const Footer = () => {
                 href="https://instagram.com/moon_munchies_and_beyond?igshid=17yssd3t95xun"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Instagram"
               >
                 <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="mailto:info@moonmunchies.ca">
+              <a href="mailto:info@moonmunchies.ca" aria-label="Email">
                 <i className="far fa-envelope"></i>
               </a>
             </li>

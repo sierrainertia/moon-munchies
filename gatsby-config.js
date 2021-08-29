@@ -1,4 +1,17 @@
-/* global module */
+/* global module, require, process */
+
+const fs = require("fs");
+const dotenv = require("dotenv");
+
+if (process.env.CONTEXT !== "production") {
+  console.warn(`Using the .env.development configuration file`);
+  const envConfig = dotenv.parse(fs.readFileSync(".env.development"));
+  for (const k in envConfig) {
+    process.env[k] = envConfig[k];
+  }
+} else {
+  console.warn(`Falling back to production environment variables`);
+}
 
 module.exports = {
   siteMetadata: {
@@ -8,6 +21,9 @@ module.exports = {
     "gatsby-plugin-sass",
     "gatsby-plugin-sharp",
     {
+      resolve: `gatsby-transformer-sharp`,
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         icon: "src/images/gatsby-icon.png",
@@ -16,17 +32,15 @@ module.exports = {
     {
       resolve: `gatsby-source-stripe`,
       options: {
-        objects: [
-          "Balance",
-          "BalanceTransaction",
-          "Product",
-          "ApplicationFee",
-          "Sku",
-          "Subscription",
-        ],
-        secretKey:
-          "sk_test_51Ia4qDGncOwLsgTJKcaTgIKClUQBNsOXPc5TiaUPOV0RqW9BwfDanU1GjyYXewQST5E8fluHpZfD8HLItNfIqMsk00kxaECvUw",
+        objects: ["Product", "Price"],
+        secretKey: process.env.STRIPE_SECRET_KEY,
         downloadFiles: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["URL"],
       },
     },
   ],
