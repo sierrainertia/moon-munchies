@@ -7,6 +7,8 @@ import "./index.scss";
 
 const DELIVERY_CUTOFF = 7000; // $70 (in cents)
 
+const DELIVERY_DISCOUNT_HINT_THRESHOLD = 4900; // $49 (in cents)
+
 const CartItem = ({ product, deliveryFee = false }) => {
   const { decrementItem, incrementItem } = useShoppingCart();
 
@@ -83,6 +85,19 @@ export const Cart = ({ prices }) => {
     [cartDetails, prices]
   );
 
+  const candyTotalPrice = useMemo(
+    () =>
+      Object.values(cartDetails).reduce(
+        (total, curr) =>
+          total +
+          ([DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id].includes(curr.id)
+            ? 0
+            : curr.price * curr.quantity),
+        0
+      ),
+    [DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id, cartDetails]
+  );
+
   useLayoutEffect(() => {
     if (cartExpanded) {
       document.body.style.overflow = "hidden";
@@ -110,15 +125,6 @@ export const Cart = ({ prices }) => {
         (item) =>
           ![DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id].includes(item.id)
       )?.length > 0;
-
-    const candyTotalPrice = Object.values(cartDetails).reduce(
-      (total, curr) =>
-        total +
-        ([DELIVERY_FEE_DISCOUNT.id, DELIVERY_FEE_REGULAR.id].includes(curr.id)
-          ? 0
-          : curr.price * curr.quantity),
-      0
-    );
 
     if (value === "DELIVERY" && candiesInCart) {
       if (candyTotalPrice >= DELIVERY_CUTOFF) {
@@ -233,6 +239,16 @@ export const Cart = ({ prices }) => {
                   <span>${totalPrice / 100}</span>
                 </div>
               )}
+              {value === "DELIVERY" &&
+                candyTotalPrice < DELIVERY_CUTOFF &&
+                candyTotalPrice >= DELIVERY_DISCOUNT_HINT_THRESHOLD && (
+                  <div className="cart__discount-notice">
+                    <span>
+                      Add only ${(DELIVERY_CUTOFF - candyTotalPrice) / 100} more
+                      for a discount on shipping!
+                    </span>
+                  </div>
+                )}
             </>
           ) : (
             <p>
