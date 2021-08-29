@@ -77,7 +77,9 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexPageQuery {
-    allStripePrice {
+    allStripePrice(
+      filter: { active: { eq: true }, product: { active: { eq: true } } }
+    ) {
       nodes {
         id
         currency

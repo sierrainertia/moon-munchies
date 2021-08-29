@@ -1,3 +1,2 @@
-- look at what errors are in bugsnag
 - move all the products to production
-- ensure that there's a way to find out about orders
+- add google analytics
