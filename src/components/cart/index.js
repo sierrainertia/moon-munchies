@@ -5,7 +5,7 @@ import Img from "gatsby-image";
 import { useDebouncedCallback } from "use-debounce";
 import "./index.scss";
 
-const DELIVERY_CUTOFF = 7000; // $70 (in cents)
+const DELIVERY_CUTOFF = 9800; // $70 (in cents)
 
 const DELIVERY_DISCOUNT_HINT_THRESHOLD = 4900; // $49 (in cents)
 
@@ -136,12 +136,13 @@ export const Cart = ({ prices }) => {
           removeItem(DELIVERY_FEE_REGULAR.id);
         }
         if (!deliveryFeeDiscountPresent) {
-          console.log("Adding a discount delivery fee", DELIVERY_FEE_DISCOUNT);
-          addItem({
-            id: DELIVERY_FEE_DISCOUNT.id,
-            price: DELIVERY_FEE_DISCOUNT.unit_amount,
-            currency: "CAD",
-          });
+          // Commented out so that it's free shipping above a certain amount
+          // console.log("Adding a discount delivery fee", DELIVERY_FEE_DISCOUNT);
+          // addItem({
+          //   id: DELIVERY_FEE_DISCOUNT.id,
+          //   price: DELIVERY_FEE_DISCOUNT.unit_amount,
+          //   currency: "CAD",
+          // });
         }
       } else {
         if (deliveryFeeDiscountPresent) {
@@ -241,7 +242,7 @@ export const Cart = ({ prices }) => {
                   <div className="cart__discount-notice">
                     <span>
                       Add only ${(DELIVERY_CUTOFF - candyTotalPrice) / 100} more
-                      for a discount on shipping!
+                      for free shipping!
                     </span>
                   </div>
                 )}
@@ -267,7 +268,7 @@ export const Cart = ({ prices }) => {
                   onChange={() => setValue("PICKUP")}
                 />
                 <label htmlFor="shipping-mode-pickup">
-                  Pickup (Calgary and surrounding area)
+                  Free Pickup (Calgary and surrounding area)
                 </label>
               </div>
               <div>
