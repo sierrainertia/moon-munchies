@@ -6,6 +6,19 @@ button {
   font-family: $body-font;
 }
 
+.banner {
+  background-color: $purple;
+  font-weight: bold;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    padding: 15px;
+  }
+}
+
 h2 {
   font-family: "Raleway";
   font-size: 48px;

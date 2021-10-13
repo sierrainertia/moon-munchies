@@ -43,6 +43,12 @@ const IndexPage = ({ data }) => {
       </Helmet>
 
       <title>Moon Munchies</title>
+      <div className="banner">
+        <p>
+          Spend $98 for free shipping! Or enjoy free local pickup for Calgary
+          and surrounding area.
+        </p>
+      </div>
       <Header />
       <Hero />
       <About />
