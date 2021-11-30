@@ -105,7 +105,7 @@ export const About = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Netty's Koffee Cup | Lethbridge, AB
+                Netty&apos;s Koffee Cup | Lethbridge, AB
               </a>
             </li>
             <li>
@@ -133,15 +133,6 @@ export const About = () => {
                 rel="noreferrer"
               >
                 The Chic Crafter | Redcliff, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/JBgwEGW7pQyat9h98"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Vessel Woodworks | Red Deer, AB
               </a>
             </li>
             <li>
