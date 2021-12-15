@@ -268,7 +268,7 @@ export const Cart = ({ prices }) => {
                   onChange={() => setValue("PICKUP")}
                 />
                 <label htmlFor="shipping-mode-pickup">
-                  Free Pickup (Calgary and surrounding area)
+                  Free Pickup (Airdrie, AB)
                 </label>
               </div>
               <div>
@@ -278,7 +278,10 @@ export const Cart = ({ prices }) => {
                   checked={value === "DELIVERY"}
                   onChange={() => setValue("DELIVERY")}
                 />
-                <label htmlFor="shipping-mode-delivery">Delivery</label>
+                <label htmlFor="shipping-mode-delivery">
+                  Delivery - Note: Delivery cannot be guaranteed before
+                  Christmas.
+                </label>
               </div>
             </div>
           </div>
