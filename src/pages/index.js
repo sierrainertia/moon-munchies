@@ -45,8 +45,7 @@ const IndexPage = ({ data }) => {
       <title>Moon Munchies</title>
       <div className="banner">
         <p>
-          Spend $98 for free shipping! Or enjoy free local pickup in Airdrie,
-          AB.
+          Due to holiday demand, any new orders can only be filled in January
         </p>
       </div>
       <Header />

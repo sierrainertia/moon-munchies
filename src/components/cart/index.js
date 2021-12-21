@@ -278,10 +278,7 @@ export const Cart = ({ prices }) => {
                   checked={value === "DELIVERY"}
                   onChange={() => setValue("DELIVERY")}
                 />
-                <label htmlFor="shipping-mode-delivery">
-                  Delivery - Note: Delivery cannot be guaranteed before
-                  Christmas.
-                </label>
+                <label htmlFor="shipping-mode-delivery">Delivery</label>
               </div>
             </div>
           </div>
