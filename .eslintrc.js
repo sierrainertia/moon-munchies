@@ -18,5 +18,9 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "react/prop-types": "off",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { ignores: ["modules"] },
+    ],
   },
 };
