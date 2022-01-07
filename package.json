@@ -38,6 +38,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "sass": "^1.32.4",
+    "smoothscroll-polyfill": "^0.4.4",
     "use-breakpoint": "^2.0.1",
     "use-debounce": "^7.0.0",
     "use-shopping-cart": "^3.0.0"
