@@ -11,6 +11,7 @@ import { Footer } from "../components/footer";
 import { Cart } from "../components/cart";
 import "../styles/index.scss";
 import "../styles/products.scss";
+import { SEO } from "../components/seo";
 
 const productThemes = ["purple", "blue", "pink"];
 
@@ -41,11 +42,13 @@ const IndexPage = ({ data }) => {
           crossOrigin="anonymous"
         ></script>
       </Helmet>
+      <SEO />
 
       <title>Moon Munchies</title>
       <div className="banner">
         <p>
-          Spend $98 for free shipping! Or enjoy free local pickup in Airdrie, AB.
+          Spend $98 for free shipping! Or enjoy free local pickup in Airdrie,
+          AB.
         </p>
       </div>
       <Header />

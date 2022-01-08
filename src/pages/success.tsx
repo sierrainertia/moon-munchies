@@ -3,6 +3,7 @@ import { useWindowSize } from "@react-hook/window-size";
 import Confetti from "react-confetti";
 import { SimplePageContents } from "../components/simple-page-contents";
 import { Link } from "gatsby";
+import { SEO } from "../components/seo";
 
 const OrderSuccessPage = () => {
   const [width, height] = useWindowSize();
@@ -23,6 +24,7 @@ const OrderSuccessPage = () => {
 
   return (
     <>
+      <SEO />
       <SimplePageContents title="Order Placed!">
         <p>
           Thank you for placing your order, someone will be in contact with you

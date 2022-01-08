@@ -56,7 +56,7 @@ const CategoryContainer = ({ children, onCategorySelected }) => {
 export const ProductTabs = ({
   categories,
   selectedCategory,
-  onCategorySelected = () => {},
+  onCategorySelected,
 }) => {
   return (
     <div className="productBar">

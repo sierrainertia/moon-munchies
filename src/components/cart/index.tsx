@@ -109,7 +109,9 @@ export const Cart = ({ prices }) => {
       document.body.style.overflow = "auto";
     }
 
-    () => (document.body.style.overflow = "auto");
+    (): void => {
+      document.body.style.overflow = "auto";
+    };
   }, [cartExpanded]);
 
   const { value, setValue } = useDeliveryContext();

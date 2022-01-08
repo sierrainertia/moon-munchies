@@ -1,26 +1,30 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2020: true,
+  root: true,
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: "module", // Allows for the use of imports
+    ecmaFeatures: {
+      jsx: true, // Allows for the parsing of JSX
+    },
+  },
+  globals: {
+    document: "readonly",
+    window: "readonly",
+  },
+  plugins: ["@typescript-eslint", "react-hooks"],
+  settings: {
+    react: {
+      version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+    },
   },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
   ],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 11,
-    sourceType: "module",
-  },
-  plugins: ["react"],
   rules: {
-    "react/prop-types": "off",
-    "node/no-unsupported-features/es-syntax": [
-      "error",
-      { ignores: ["modules"] },
-    ],
+    "no-console": "warn",
   },
 };
