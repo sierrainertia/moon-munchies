@@ -3,6 +3,7 @@ import { useShoppingCart } from "use-shopping-cart";
 import { useDeliveryContext } from "../delivery-provider";
 import Img from "gatsby-image";
 import { useDebouncedCallback } from "use-debounce";
+import { formatMoney } from "../../utils";
 import "./index.scss";
 
 const DELIVERY_CUTOFF = 9800; // $70 (in cents)
@@ -191,8 +192,8 @@ export const Cart = ({ prices }) => {
         className="cart__checkout-button"
         onClick={() => setCartExpanded(true)}
       >
-        Checkout {cartCount} item{cartCount === 1 ? "" : "s"} ($
-        {totalPrice / 100}.00)
+        Checkout {cartCount} item{cartCount === 1 ? "" : "s"} (
+        {formatMoney(totalPrice)})
       </button>
       <div className="cart__page">
         <div
@@ -233,7 +234,7 @@ export const Cart = ({ prices }) => {
               {totalPrice && (
                 <div className="cart__total">
                   <span>Total</span>
-                  <span>${totalPrice / 100}</span>
+                  <span>{formatMoney(totalPrice)}</span>
                 </div>
               )}
               {value === "DELIVERY" &&

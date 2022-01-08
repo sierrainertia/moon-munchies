@@ -3,16 +3,18 @@ import React, { useCallback } from "react";
 export const AnchorLink = ({ children, href }) => {
   const goToAnchor = useCallback(
     (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-
       // Find the anchor on the page and scroll to it
-      const el = document.querySelector(href);
-      el.scrollIntoView({
-        behavior: "smooth",
-      });
+      try {
+        const el = document.querySelector(href);
+        el.scrollIntoView({
+          behavior: "smooth",
+        });
 
-      return false;
+        e.stopPropagation();
+        e.preventDefault();
+      } catch (e) {
+        // no-op if the element doesn't exist
+      }
     },
     [href]
   );

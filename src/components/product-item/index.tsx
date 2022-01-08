@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { useShoppingCart } from "use-shopping-cart";
 import Img from "gatsby-image";
+import { formatMoney } from "../../utils";
 import "./index.scss";
 
 const CartButtons = ({ product }) => {
@@ -69,7 +70,7 @@ export const ProductItem = ({ product }) => {
           <div className="product-item__title">{product.product.name}</div>
           <div className="product-item__price-box">
             <div className="product-item__price-tag">
-              ${product.unit_amount / 100}
+              {formatMoney(product.unit_amount)}
             </div>
             <CartButtons product={product} />
           </div>
