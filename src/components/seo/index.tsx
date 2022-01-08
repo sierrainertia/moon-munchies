@@ -7,7 +7,7 @@ export const SEO = () => {
   const colorFlow = useRef(
     new ColorFlow({
       background: ["#d5d8ff", "#febcd7", "#fff296", "#90ede0"],
-      time: 30,
+      time: 20,
     })
   );
   const loaded = useRef<boolean>(false);

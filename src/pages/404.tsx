@@ -8,7 +8,7 @@ const OrderSuccessPage = () => {
       <SEO />
       <SimplePageContents title="Page not found">
         <p>
-          Maybe you can find what you're looking for on the{" "}
+          Maybe you can find what you&apos;re looking for on the{" "}
           <a href="/">home page</a>
         </p>
       </SimplePageContents>

@@ -19,7 +19,7 @@ const OrderSuccessPage = () => {
       clearCart();
     }, 1000); // Give the page a bit of time to load
 
-    return () => clearTimeout(handle);
+    return (): void => window.clearTimeout(handle);
   }, [clearCart]);
 
   return (

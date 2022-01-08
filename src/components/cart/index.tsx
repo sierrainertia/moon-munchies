@@ -10,7 +10,13 @@ const DELIVERY_CUTOFF = 9800; // $70 (in cents)
 
 const DELIVERY_DISCOUNT_HINT_THRESHOLD = 4900; // $49 (in cents)
 
-const CartItem = ({ product, deliveryFee = false }) => {
+const CartItem = ({
+  product,
+  deliveryFee = false,
+}: {
+  product: any;
+  deliveryFee?: boolean;
+}) => {
   const { decrementItem, incrementItem } = useShoppingCart();
 
   const imgData = product.product?.localFiles?.[0]?.childImageSharp.fluid;
@@ -52,7 +58,7 @@ const CartItem = ({ product, deliveryFee = false }) => {
   );
 };
 
-export const Cart = ({ prices }) => {
+export const Cart = ({ prices }: { prices: any }) => {
   const [cartExpanded, setCartExpanded] = useState(false);
 
   const DELIVERY_FEE_REGULAR = useMemo(

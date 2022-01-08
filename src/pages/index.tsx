@@ -15,7 +15,7 @@ import { SEO } from "../components/seo";
 
 const productThemes = ["purple", "blue", "pink"];
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data }: { data: any }) => {
   const productsByCategory = {};
 
   data.allStripePrice.nodes.forEach((price) => {
