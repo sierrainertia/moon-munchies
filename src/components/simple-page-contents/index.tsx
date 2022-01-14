@@ -6,7 +6,7 @@ export const SimplePageContents = ({
   children,
 }: {
   title?: string;
-  children: React.ReactChildren;
+  children: React.ReactChild;
 }) => {
   return (
     <div className="simple-page-contents">

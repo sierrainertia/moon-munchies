@@ -5,10 +5,16 @@ export const PICKUP = "PICKUP";
 
 const DeliveryContext = createContext({
   value: "PICKUP",
-  setValue: () => {}, // noop
+  setValue: () => {
+    // noop
+  },
 });
 
-export const DeliveryContextProvider = ({ children }) => {
+export const DeliveryContextProvider = ({
+  children,
+}: {
+  children: React.ReactChild;
+}) => {
   const [value, setValue] = useState("PICKUP");
 
   return (

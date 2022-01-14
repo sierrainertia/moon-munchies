@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Helmet from "react-helmet";
 import ColorFlow from "colorflow";
 import useAnimationFrame from "use-animation-frame";
+import { useSiteUrl } from "../../hooks/use-site-url";
 
 export const SEO = () => {
   const colorFlow = useRef(
@@ -13,6 +14,8 @@ export const SEO = () => {
   const loaded = useRef<boolean>(false);
   const colorCyclingEl = useRef<HTMLDivElement | null>(null);
   const metaThemeEl = useRef<HTMLMetaElement | null>(null);
+
+  const { url } = useSiteUrl();
 
   useAnimationFrame(() => {
     if (loaded.current) {
@@ -34,6 +37,8 @@ export const SEO = () => {
     <>
       <Helmet>
         <meta name="theme-color" content="white" />
+        <link rel="canonical" href={url} />
+        <meta property="og:url" content={url} />
       </Helmet>
       <div ref={colorCyclingEl} className={colorFlow.current.thisClass} />
     </>

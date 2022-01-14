@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useSiteUrl } from "../../hooks/use-site-url";
 import mrMunchie from "../../images/logo.png";
 import "./index.scss";
 
@@ -43,14 +44,14 @@ export const Header = () => {
     }
   }, [isMenuOpen]);
 
+  const { url } = useSiteUrl();
+
   return (
     <header className={`nav-bar ${isMenuOpen ? "nav-bar--open" : ""}`}>
       <div className="wrapper">
-        <img
-          src={mrMunchie}
-          alt="Moon munchies logo"
-          className="nav-bar__logo"
-        />
+        <a href={url} className="nav-bar__logo">
+          <img src={mrMunchie} alt="Moon munchies logo" />
+        </a>
         <div className="nav-bar__items-wrapper">
           <nav>
             <ul>
@@ -60,9 +61,9 @@ export const Header = () => {
               <li>
                 <a href="#about">About us</a>
               </li>
-              {/* <li>
+              <li>
                 <a href="#products">Products</a>
-              </li> */}
+              </li>
             </ul>
           </nav>
           <ul className="nav-bar__social-links">

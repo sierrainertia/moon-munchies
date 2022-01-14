@@ -27,6 +27,7 @@ console.log(
 module.exports = {
   siteMetadata: {
     title: "moon-munchies",
+    siteURL: "https://moonmunchies.ca",
   },
   plugins: [
     "gatsby-plugin-sass",

@@ -18,9 +18,9 @@ export const Footer = () => {
             <li>
               <a href="#about">About us</a>
             </li>
-            {/* <li>
+            <li>
               <a href="#products">Products</a>
-            </li> */}
+            </li>
           </ul>
         </div>
         <div>
@@ -57,6 +57,10 @@ export const Footer = () => {
       <section className="footer__copyright">
         <p className="copyright">
           Copyright &copy; Moon Munchies {new Date().getFullYear()}
+        </p>
+        <p>Located in Airdrie, Alberta</p>
+        <p>
+          Call or text us at: <a href="tel:+15875787328">(587) 578-7328</a>
         </p>
         <p>
           Website made with ❤️ by

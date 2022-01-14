@@ -60,8 +60,10 @@
   }
 
   &__logo {
-    object-fit: contain;
-    height: 60px;
+    img {
+      object-fit: contain;
+      height: 60px;
+    }
   }
 
   a {

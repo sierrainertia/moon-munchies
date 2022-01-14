@@ -1,6 +1,12 @@
 import React, { useCallback } from "react";
 
-export const AnchorLink = ({ children, href }) => {
+export const AnchorLink = ({
+  children,
+  href,
+}: {
+  children: React.ReactChild;
+  href: string;
+}) => {
   const goToAnchor = useCallback(
     (e) => {
       // Find the anchor on the page and scroll to it

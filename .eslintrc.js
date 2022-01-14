@@ -26,5 +26,6 @@ module.exports = {
   ],
   rules: {
     "no-console": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
   },
 };
