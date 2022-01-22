@@ -245,16 +245,21 @@ export const Cart = ({ prices }: { prices: any }) => {
                   <span>{formatMoney(totalPrice)}</span>
                 </div>
               )}
-              {value === "DELIVERY" &&
-                candyTotalPrice < DELIVERY_CUTOFF &&
-                candyTotalPrice >= DELIVERY_DISCOUNT_HINT_THRESHOLD && (
-                  <div className="cart__discount-notice">
+              {value === "DELIVERY" && candyTotalPrice < DELIVERY_CUTOFF && (
+                <div className="cart__discount-notice">
+                  {candyTotalPrice >= DELIVERY_DISCOUNT_HINT_THRESHOLD ? (
                     <span>
-                      Add only ${(DELIVERY_CUTOFF - candyTotalPrice) / 100} more
-                      for free shipping!
+                      Add only {formatMoney(DELIVERY_CUTOFF - candyTotalPrice)}{" "}
+                      more for free shipping!
                     </span>
-                  </div>
-                )}
+                  ) : (
+                    <span>
+                      Shipping is free for orders over{" "}
+                      {formatMoney(DELIVERY_CUTOFF)}
+                    </span>
+                  )}
+                </div>
+              )}
             </>
           ) : (
             <p>
