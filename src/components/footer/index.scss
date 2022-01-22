@@ -25,6 +25,30 @@
     display: block;
   }
 
+  &__section-left {
+    display: flex;
+
+    & > * + * {
+      margin-left: 100px;
+    }
+
+    @include desktop {
+      & > * + * {
+        margin-left: 50px;
+      }
+    }
+
+    @include tablet {
+      flex-direction: column;
+      // justify-content: center;
+      // align-items: center;
+
+      & > * + * {
+        margin-left: 0;
+      }
+    }
+  }
+
   &__logo {
     display: flex;
     flex-direction: column;
@@ -52,6 +76,12 @@
 
     & > * + * {
       margin-left: 100px;
+    }
+
+    @include desktop {
+      & > * + * {
+        margin-left: 50px;
+      }
     }
 
     @include tablet {
