@@ -23,6 +23,10 @@ console.log(
   "GATSBY_STRIPE_PUBLISHABLE_KEY",
   obfuscate(process.env["GATSBY_STRIPE_PUBLISHABLE_KEY"])
 );
+console.log(
+  "CONTENTFUL_ACCESS_TOKEN",
+  obfuscate(process.env["CONTENTFUL_ACCESS_TOKEN"])
+);
 
 module.exports = {
   siteMetadata: {
@@ -32,6 +36,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-sass",
     "gatsby-plugin-sharp",
+    "gatsby-plugin-image",
     {
       resolve: `gatsby-transformer-sharp`,
     },
@@ -53,6 +58,14 @@ module.exports = {
       resolve: `gatsby-plugin-env-variables`,
       options: {
         allowList: ["URL"],
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `vx6q3nv9asj2`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],

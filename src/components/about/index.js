@@ -1,7 +1,22 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import "./index.scss";
 
 export const About = () => {
+  const { data } = useStaticQuery(graphql`
+    query {
+      data: allContentfulLandingPage {
+        nodes {
+          retailStore {
+            city
+            link
+            name
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <div className="aboutUs" id="about">
       <div className="wrapper">
@@ -27,123 +42,13 @@ export const About = () => {
           </p>
           <p>Place an order today or find us at any of the below locations:</p>
           <ul>
-            <li>
-              <a
-                href="https://g.page/homegrowninab?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Home Grown | Airdrie, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/Shoplift-Deals?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Shoplift Deals | Airdrie, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/rrrEwE8KZTmhi7Zt8"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Squiggly Pig Marketplace | Airdrie, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/rivalaxethrowing?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Rival Axe Throwing | Airdrie, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/xJhh6GCr3YGRC6qo6"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Olde Tyme Candy Shoppe | Canmore, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/locallovegiftingco?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Local Love Gifting Co | Calgary, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/XAAfo3Xzfr4aVUTZ6"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Thistle and Clover | Calgary, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/the-donut-man-crossfield?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                The Donut Man | Crossfield, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/KoffeeCup?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Netty&apos;s Koffee Cup | Lethbridge, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/qBpm3rcbs2Mxgj51A"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Kim &amp; CO. cafe &amp; gift shop | Milk River, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://g.page/the-hive-nanton?share"
-                target="_blank"
-                rel="noreferrer"
-              >
-                The Hive Nanton | Nanton, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/JNVgZzZdQaP5CV8H7"
-                target="_blank"
-                rel="noreferrer"
-              >
-                The Chic Crafter | Redcliff, AB
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://goo.gl/maps/6b2En4qJ1Qguv1pA6"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Farm Basket | Three Hills, AB
-              </a>
-            </li>
+            {data.nodes[0].retailStore.map((store) => (
+              <li key={store.name}>
+                <a href={store.link} target="_blank" rel="noreferrer">
+                  {store.name} | {store.city}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
