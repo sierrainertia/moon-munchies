@@ -43,7 +43,7 @@ export const About = () => {
           <p>Place an order today or find us at any of the below locations:</p>
           <ul>
             {data.nodes[0].retailStore.map((store) => (
-              <li key={store.name}>
+              <li key={`${store.name}${store.city}`}>
                 <a href={store.link} target="_blank" rel="noreferrer">
                   {store.name} | {store.city}
                 </a>
