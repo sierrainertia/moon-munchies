@@ -14,6 +14,13 @@ button {
   flex-direction: column;
   justify-content: center;
 
+  &--warning {
+    background-color: $yellow;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+  }
+
   p {
     padding: 15px;
   }

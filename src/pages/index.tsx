@@ -51,6 +51,12 @@ const IndexPage = ({ data }: { data: any }) => {
           AB.
         </p>
       </div>
+      <div className="banner banner--warning" style={{ backgroundColor: "" }}>
+        <p>
+          Unfortunately we are unable to guarantee delivery orders to arrive by
+          Christmas.
+        </p>
+      </div>
       <Header />
       <Hero />
       <About />
