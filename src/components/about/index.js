@@ -3,19 +3,20 @@ import React from "react";
 import "./index.scss";
 
 export const About = () => {
-  const { data } = useStaticQuery(graphql`
-    query {
-      data: allContentfulLandingPage {
-        nodes {
-          retailStore {
-            city
-            link
-            name
-          }
-        }
-      }
-    }
-  `);
+  const data = [];
+  // const { data } = useStaticQuery(graphql`
+  //   query {
+  //     data: allContentfulLandingPage {
+  //       nodes {
+  //         retailStore {
+  //           city
+  //           link
+  //           name
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
 
   return (
     <div className="aboutUs" id="about">
@@ -40,16 +41,16 @@ export const About = () => {
             Ready to try flavours that are out of this world? Moon Munchies are
             available for pick up and delivery.
           </p>
-          <p>Place an order today or find us at any of the below locations:</p>
-          <ul>
-            {data.nodes[0].retailStore.map((store) => (
+          {/* <p>Place an order today or find us at any of the below locations:</p> */}
+          {/* <ul> */}
+          {/* {data.nodes[0].retailStore.map((store) => (
               <li key={`${store.name}${store.city}`}>
                 <a href={store.link} target="_blank" rel="noreferrer">
                   {store.name} | {store.city}
                 </a>
               </li>
-            ))}
-          </ul>
+            ))} */}
+          {/* </ul> */}
         </div>
       </div>
     </div>
