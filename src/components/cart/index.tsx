@@ -6,9 +6,9 @@ import { useDebouncedCallback } from "use-debounce";
 import { formatMoney } from "../../utils";
 import "./index.scss";
 
-const DELIVERY_CUTOFF = 9800; // $70 (in cents)
+const DELIVERY_CUTOFF = 11900; // $119 (in cents)
 
-const DELIVERY_DISCOUNT_HINT_THRESHOLD = 4900; // $49 (in cents)
+const DELIVERY_DISCOUNT_HINT_THRESHOLD = 6900; // $69 (in cents)
 
 const CartItem = ({
   product,
@@ -300,7 +300,14 @@ export const Cart = ({ prices }: { prices: any }) => {
             {value === "PICKUP" ? (
               <></>
             ) : (
-              <p>Delivery is possible in Canada only</p>
+              <>
+                <p>
+                  Delivery is available in Canada only.
+                  <br />
+                  Unfortunately we are not able to ship to PO boxes or remote
+                  locations at this time.
+                </p>
+              </>
             )}
             <button className="primary-btn" onClick={redirectToCheckout}>
               Proceed to payment
