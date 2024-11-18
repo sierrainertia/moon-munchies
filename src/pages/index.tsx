@@ -27,7 +27,7 @@ const IndexPage = ({ data }: { data: any }) => {
     productsByCategory[category].push(price);
   });
 
-  const [selectedCategory, setSelectedCategory] = useState("taffy");
+  const [selectedCategory, setSelectedCategory] = useState("candy");
   const selectedCategoryIndex =
     Object.keys(productsByCategory).findIndex((c) => {
       return c === selectedCategory;
