@@ -3,26 +3,15 @@ import {
   DeliveryContextProvider,
   useDeliveryContext,
 } from "./src/components/delivery-provider";
-import Bugsnag from "@bugsnag/js";
-import BugsnagPluginReact from "@bugsnag/plugin-react";
 import { CartProvider } from "use-shopping-cart";
 import smoothscroll from "smoothscroll-polyfill";
-
-Bugsnag.start({
-  apiKey: "17b8f3e8cc06ebd5bb9fe74c9f122c0f",
-  plugins: [new BugsnagPluginReact()],
-});
 
 smoothscroll.polyfill();
 
 const stripeKey = process.env.GATSBY_STRIPE_PUBLISHABLE_KEY;
 
-const ErrorBoundary = Bugsnag.getPlugin("react").createErrorBoundary(React);
-
 const OuterProvider = ({ children }) => (
-  <ErrorBoundary>
-    <DeliveryContextProvider>{children}</DeliveryContextProvider>
-  </ErrorBoundary>
+  <DeliveryContextProvider>{children}</DeliveryContextProvider>
 );
 
 const InnerProvider = ({ children }) => {
