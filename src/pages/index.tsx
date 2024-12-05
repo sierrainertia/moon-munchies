@@ -53,7 +53,8 @@ const IndexPage = ({ data }: { data: any }) => {
       </div>
       <div className="banner banner--warning" style={{ backgroundColor: "" }}>
         <p>
-          Due to high demand, orders placed may take up to two weeks to process.
+          Unfortunately we are unable to guarantee delivery orders to arrive by
+          Christmas.
         </p>
       </div>
       <Header />
