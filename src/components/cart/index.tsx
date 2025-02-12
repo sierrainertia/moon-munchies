@@ -6,7 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { formatMoney } from "../../utils";
 import "./index.scss";
 
-const DELIVERY_CUTOFF = 11900; // $119 (in cents)
+const DELIVERY_CUTOFF = 9900; // $99 (in cents)
 
 const DELIVERY_DISCOUNT_HINT_THRESHOLD = 6900; // $69 (in cents)
 
